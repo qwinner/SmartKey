@@ -66,13 +66,13 @@ public class AppDetail {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document dom = builder.parse(stream);
 			Element root = dom.getDocumentElement();
-			NodeList items = root.getElementsByTagName("UpdateApp");//��������UpdateApp�ڵ�
+			NodeList items = root.getElementsByTagName("UpdateApp");
 			if(items.getLength()>0){
 				Element personNode = (Element) items.item(0);
 				appdetail.setVersion(new String(personNode.getAttribute("Version")));
 				NodeList childsNodes = personNode.getChildNodes();
 				for (int j = 0; j < childsNodes.getLength(); j++) {
-					Node node = (Node)childsNodes.item(j);	//�ж��Ƿ�ΪԪ������ 					
+					Node node = (Node)childsNodes.item(j);
 					if(node.getNodeType() == Node.ELEMENT_NODE){
 						Element childNode = (Element) node;	
 						//�ж��Ƿ�nameԪ��

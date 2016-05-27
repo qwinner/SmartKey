@@ -10,7 +10,6 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
-//public class ActivityList extends Application{
 public class ActivityList {	
 	private List<Activity> activityList = new LinkedList<Activity>();	
 	private static ActivityList instance;
@@ -44,7 +43,7 @@ public class ActivityList {
 	public String	WebHandler;	//JSON
 	
 	public boolean	isonline=true;
-	public String 	DefaultUser;	//ȱʡ��¼�û�
+	public String 	DefaultUser;
 	public String	CheckDate;	
 	public long		RxTxBytes=0;
 	
@@ -53,8 +52,7 @@ public class ActivityList {
 	private ActivityList(){ 
     	//LoadConfig();
     }
-    
-  //����ģʽ�л�ȡΨһ��MyApplicationʵ��
+
     public static ActivityList getInstance() {
     	if(null == instance) {
     		instance = new ActivityList();
@@ -80,7 +78,6 @@ public class ActivityList {
     	return ccontext;
     }
     
-    //���Activity��������
     public void addActivity(Activity activity){
     	activityList.add(activity);
     }
@@ -89,7 +86,6 @@ public class ActivityList {
     	activityList.remove(activity);
     }
     
-    //��������Activity��finish
     public void exit(){
     	//SaveConfig();
     	for(Activity activity:activityList) {
@@ -106,7 +102,6 @@ public class ActivityList {
 		edit.commit();
     }
     
-	//��������
 	public void SaveConfig(){
     	SharedPreferences sp;
 		sp = PreferenceManager.getDefaultSharedPreferences(pcontext);
@@ -123,15 +118,10 @@ public class ActivityList {
 
     }
     
-	//��ȡ����
     public void LoadConfig(){
     	SharedPreferences sp;
 		sp = PreferenceManager.getDefaultSharedPreferences(pcontext);
-		
-		//123.127.52.227
-		//http://www.coiot.cn/
-		//www.coiot.cn
-		
+
 		WebAddr=sp.getString("WebAddr","http://www.coiot.cn/");		
 		UpdateUrl=sp.getString("UpdateUrl","http://www.coiot.cn/apk/update.xml");
 		//WebService=sp.getString("WebService","http://www.coiot.cn/FingermapWebApp/FingermapService.asmx");
@@ -149,7 +139,7 @@ public class ActivityList {
 		RxTxBytes=android.net.TrafficStats.getMobileRxBytes()+android.net.TrafficStats.getMobileTxBytes();
     }
     
-    public long getMobileRxBytes(){  //��ȡͨ��Mobile�����յ����ֽ������WiFi  
+    public long getMobileRxBytes(){
         return android.net.TrafficStats.getMobileRxBytes()==android.net.TrafficStats.UNSUPPORTED?0:(android.net.TrafficStats.getMobileRxBytes()/1024);  
     }     
     

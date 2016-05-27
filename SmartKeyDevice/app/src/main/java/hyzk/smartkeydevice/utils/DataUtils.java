@@ -3,16 +3,9 @@ package hyzk.smartkeydevice.utils;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import android.content.Context;
-import android.os.Handler;
-import android.os.SystemClock;
-import android.util.Log;
-import android.widget.Toast;
 
 
 public class DataUtils {
@@ -26,12 +19,7 @@ public class DataUtils {
 		return c;
 	}
 
-	/**
-	 * 16�����ַ�ת��������
-	 * 
-	 * @param hex
-	 * @return
-	 */
+
 	public static byte[] hexStringTobyte(String hex) {
 		int len = hex.length() / 2;
 		byte[] result = new byte[len];
@@ -52,12 +40,6 @@ public class DataUtils {
 		return b;
 	}
 
-	/**
-	 * ����ת��16�����ַ�
-	 * 
-	 * @param b
-	 * @return
-	 */
 	public static String toHexString(byte[] b) {
 		StringBuffer buffer = new StringBuffer();
 		for (int i = 0; i < b.length; i++) {
@@ -75,9 +57,7 @@ public class DataUtils {
 		}
 	}
 
-	/**
-	 * ʮ������ַ�ת�����ַ�
-	 */
+
 	public static String hexStr2Str(String hexStr) {
 		String str = "0123456789ABCDEF";
 		char[] hexs = hexStr.toCharArray();
@@ -91,9 +71,7 @@ public class DataUtils {
 		return new String(bytes);
 	}
 
-	/**
-	 * �ַ�ת����ʮ������ַ�
-	 */
+
 	public static String str2Hexstr(String str) {
 		char[] chars = "0123456789ABCDEF".toCharArray();
 		StringBuilder sb = new StringBuilder("");
@@ -126,14 +104,7 @@ public class DataUtils {
 		return hexStr;
 	}
 
-	/**
-	 * 16�����ַ�ָ�����ɿ飬ÿ��32��16�����ַ�16�ֽ�
-	 * 
-	 * @param str
-	 * @return
-	 */
 	public static String[] hexStr2StrArray(String str) {
-		// 32��ʮ������ַ��ʾ16�ֽ�
 		int len = 32;
 		int size = str.length() % len == 0 ? str.length() / len : str.length()
 				/ len + 1;
@@ -152,13 +123,6 @@ public class DataUtils {
 		return strs;
 	}
 
-	/**
-	 * ��16�����ַ�ѹ�����ֽ����飬�ڰ��ֽ�����ת����16�����ַ�
-	 * 
-	 * @param hexstr
-	 * @return
-	 * @throws IOException
-	 */
 	public static byte[] compress(byte[] data) throws IOException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		GZIPOutputStream gzip = new GZIPOutputStream(out);
@@ -167,13 +131,6 @@ public class DataUtils {
 		return out.toByteArray();
 	}
 
-	/**
-	 * ��16�����ַ��ѹ��ѹ�����ֽ����飬�ڰ��ֽ�����ת����16�����ַ�
-	 * 
-	 * @param hexstr
-	 * @return
-	 * @throws IOException
-	 */
 	public static byte[] uncompress(byte[] data) throws IOException {
 
 		ByteArrayOutputStream out = new ByteArrayOutputStream();

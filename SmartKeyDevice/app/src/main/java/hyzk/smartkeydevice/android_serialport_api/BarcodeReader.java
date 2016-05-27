@@ -8,7 +8,7 @@ import java.security.InvalidParameterException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.fpi.MtGpio;
+import hyzk.smartkeydevice.fpi.MtGpio;
 import android.os.Handler;
 import android.os.Message;
 

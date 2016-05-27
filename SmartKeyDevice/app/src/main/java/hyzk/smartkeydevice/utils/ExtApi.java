@@ -25,7 +25,7 @@ import android.graphics.ColorMatrixColorFilter;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.ParseException;
+
 import android.net.wifi.WifiManager;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
@@ -44,50 +44,32 @@ public class ExtApi {
 	}
 	
 	public static String getDataTimeForID(){
-		//Date dt = new Date(System.currentTimeMillis());
-		//String id = String.format("%d%02d%02d%02d%02d",dt.getYear(),dt.getMonth(),dt.getDay(),dt.getHours(),dt.getMinutes());
-		//return id;
-		Time t=new Time(); // or Time t=new Time("GMT+8"); ����Time Zone���ϡ�  
-		t.setToNow(); // ȡ��ϵͳʱ�䡣  
+		Time t=new Time();
+		t.setToNow();
 		int year = t.year;  
 		int month = t.month+1;  
 		int date = t.monthDay;  
 		int hour = t.hour; // 0-23  
 		int minute = t.minute;  
-		//int second = t.second;  
 		return String.format("%d%02d%02d%02d%02d",year,month,date,hour,minute);
 	}
-	//*
+
 	public static String getDataForID(){
-		Time t=new Time(); // or Time t=new Time("GMT+8"); ����Time Zone���ϡ�  
-		t.setToNow(); // ȡ��ϵͳʱ�䡣  
+		Time t=new Time();
+		t.setToNow();
 		int year = t.year;  
 		int month = t.month+1;  
 		int date = t.monthDay;  
 		return String.format("%d%02d%02d",year,month,date);
 	}
-	//*/
-	
-	/*
-	public static String getDataForID(){
-		Time t=new Time(); // or Time t=new Time("GMT+8"); ����Time Zone���ϡ�  
-		t.setToNow(); // ȡ��ϵͳʱ�䡣  
-		int year = t.year;  
-		int month = t.month+1;  
-		int date = t.monthDay;  
-		int hour = t.hour; // 0-23  
-		int minute = t.minute;
-		return String.format("%02d%02d%02d%02d%02d",year-2000,month,date,hour,minute);
-	}
-	*/
-	
+
 	public static String getDateTimeStr(){
-		Time t=new Time(); // or Time t=new Time("GMT+8"); ����Time Zone���ϡ�  
-		t.setToNow(); // ȡ��ϵͳʱ�䡣  
+		Time t=new Time();
+		t.setToNow();
 		int year = t.year;  
 		int month = t.month+1;  
 		int date = t.monthDay;  
-		int hour = t.hour; // 0-23  
+		int hour = t.hour;
 		int minute = t.minute;  
 		int second = t.second;  
 		return String.format("%d-%02d-%02d %02d:%02d:%02d",year,month,date,hour,minute,second);
@@ -179,10 +161,7 @@ public class ExtApi {
 		return null;
 	}  
 	
-	/** 
-     * ���ֽ����鱣��Ϊһ���ļ�  
-     * @EditTime 2007-8-13 ����11:45:56  
-     */   
+
     public static File SaveBytesToFile(byte[] b, String outputFile) {   
         BufferedOutputStream stream = null;   
         File file = null;   
@@ -207,25 +186,17 @@ public class ExtApi {
     
     public static byte[] intToByte(int number) {  
         byte[] abyte = new byte[4];  
-        // "&" �루AND�������������Ͳ������ж�Ӧλִ�в����������λ��Ϊ1ʱ���1������0��  
-        abyte[0] = (byte) (0xff & number);  
-        // ">>"����λ����Ϊ�������λ��0����Ϊ�������λ��1  
-        abyte[1] = (byte) ((0xff00 & number) >> 8);  
+        abyte[0] = (byte) (0xff & number);
+        abyte[1] = (byte) ((0xff00 & number) >> 8);
         abyte[2] = (byte) ((0xff0000 & number) >> 16);  
         abyte[3] = (byte) ((0xff000000 & number) >> 24);  
         return abyte;  
     }  
       
-    /** 
-     *����λ�Ƶ� byte[]ת����int 
-     * @param byte[] bytes 
-     * @return int  number 
-     */  
-      
+
     public static int bytesToInt(byte[] bytes) {  
         int number = bytes[0] & 0xFF;  
-        // "|="��λ��ֵ��  
-        number |= ((bytes[1] << 8) & 0xFF00);  
+        number |= ((bytes[1] << 8) & 0xFF00);
         number |= ((bytes[2] << 16) & 0xFF0000);  
         number |= ((bytes[3] << 24) & 0xFF000000);  
         return number;  
@@ -254,12 +225,7 @@ public class ExtApi {
 		}
 		return gbk;
     }
-    
-    /**
-    * ����ת����Java�ַ�
-    * @param date 
-    * @return str
-    */
+
     public static String DateToStr(Date date) {
       
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -307,10 +273,10 @@ public class ExtApi {
 	  int j = 0;   
 	  int index;   
 	  while (len-- != 0) {   
-		  hb = (byte) (crc / 256); //��8λ�����������ʽ�ݴ�CRC�ĸ�8λ   
-	  	index = ((hb ^ b[j]) & 0xff); //�����������±�   
-	  	crc <<= 8; // ����8λ���൱��CRC�ĵ�8λ����   
-	  	crc ^= (TABLE1021[index]); // ��8λ�͵�ǰ�ֽ���Ӻ��ٲ����CRC ���ټ�����ǰ��CRC   
+		  hb = (byte) (crc / 256);
+	  	index = ((hb ^ b[j]) & 0xff);
+	  	crc <<= 8;
+	  	crc ^= (TABLE1021[index]);
 	  	j++;   
 	  }   
 	  return (crc);   
@@ -331,11 +297,7 @@ public class ExtApi {
        crc &= 0xffff;
        return crc;	 
    }
-    /**
-    * �ַ�ת��������
-    * @param str
-    * @return date
-    */
+
     public static Date StrToDate(String str) {
       
        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -349,15 +311,13 @@ public class ExtApi {
        return date;
     }
 
- // ��ť������   
-  	private final static float[] BUTTON_PRESSED = new float[] {        
+  	private final static float[] BUTTON_PRESSED = new float[] {
   	         1.1f, 0, 0, 0, -50,        
   	         0, 1.1f, 0, 0, -50,        
   	         0, 0, 1.1f, 0, -50,        
   	         0, 0, 0, 1.5f, 0 };       
   	             
-  	// ��ť�ָ�ԭ״    
-  	private final static float[] BUTTON_RELEASED = new float[] {        
+  	private final static float[] BUTTON_RELEASED = new float[] {
   	          1, 0, 0, 0, 0,        
   	          0, 1, 0, 0, 0,        
   	          0, 0, 1, 0, 0,        
@@ -403,15 +363,7 @@ public class ExtApi {
     }
     
     public static String getFileName(String apath){
-    	/*
-        int start=apath.lastIndexOf("/");  
-        int end=apath.lastIndexOf(".");  
-        if(start!=-1 && end!=-1){  
-            return apath.substring(start+1,end);    
-        }else{  
-            return null;  
-        } 
-        */
+
     	int start=apath.lastIndexOf("/");  
         if(start!=-1){  
             return apath.substring(start+1);    
@@ -420,11 +372,7 @@ public class ExtApi {
         } 
     }
     
-    /**
-	 * make true current connect service is wifi
-	 * @param mContext
-	 * @return
-	 */
+
     public static boolean IsWifi(Context mContext) {
     	try
         {
@@ -452,17 +400,7 @@ public class ExtApi {
 		return false; 
 	}
     
-    /**
-	 * �Ƿ��� wifi true������ false���ر�
-	 * 
-	 * һ��Ҫ����Ȩ�ޣ� <uses-permission
-	 * android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
-	 * <uses-permission
-	 * android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
-	 * 
-	 * 
-	 * @param isEnable
-	 */
+
 	public static void setWifi(Context context,boolean isEnable) {
 		WifiManager mWm = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
 		if(isEnable){

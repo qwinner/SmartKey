@@ -11,7 +11,7 @@ import java.io.OutputStream;
 import java.security.InvalidParameterException;
 
 import android.content.SharedPreferences;
-import android.fpi.MtGpio;
+import hyzk.smartkeydevice.fpi.MtGpio;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.SystemClock;

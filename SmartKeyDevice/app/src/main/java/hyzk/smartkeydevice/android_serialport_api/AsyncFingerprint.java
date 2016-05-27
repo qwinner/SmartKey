@@ -5,8 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.zip.DataFormatException;
 
-import com.fgtit.utils.DataUtils;
-import com.fgtit.utils.ToastUtil;
+import hyzk.smartkeydevice.utils.DataUtils;
+import hyzk.smartkeydevice.utils.ToastUtil;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -42,21 +42,15 @@ public class AsyncFingerprint extends Handler {
 	private static final int  PS_UpImageEX = 0x31;
 	private static final int  PS_GenCharEX = 0x32;
 	
-	/**
-	 * ��Ӧ���ͼ����ݹ�40044�ֽ�
-	 */
+
 	private static final int UP_IMAGE_RESPONSE_SIZE = 40044;
 	
 	private static final int UP_IMAGEEX_RESPONSE_SIZE = 16521;
 	
-	/**
-	 * ��Ӧ�������ֵ��ݹ�568�ֽ�
-	 */
+
 	private static final int UP_CHAR_RESPONSE_SIZE = 568;
 
-	/**
-	 * ������:��λ�����ݴ�ŵ�
-	 */
+
 	private byte[] data = new byte[1024 * 50];
 
 	private byte[] buffer = new byte[1024 * 50];
