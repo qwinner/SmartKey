@@ -106,7 +106,7 @@ public class SerialPortManager {
 		if (mReadThread != null)
 			mReadThread.interrupt();
 		mReadThread = null;
-		MtGpio.getInstance().FPPowerSwitch(false);
+//		MtGpio.getInstance().FPPowerSwitch(false);
 		if (mSerialPort != null) {
 			try {
 				mOutputStream.close();

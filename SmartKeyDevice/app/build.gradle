@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "24.0.0 rc2"
+
+    compileSdkVersion 19
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         applicationId "hyzk.smartkeydevice"
@@ -17,10 +18,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs','libs/armeabi']
+//        }
+//    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.andreabaccega:android-form-edittext:1.2.1@aar'
+
 }
