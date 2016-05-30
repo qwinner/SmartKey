@@ -38,6 +38,9 @@ public class LoginActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        this.getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED, FLAG_HOMEKEY_DISPATCHED);
+
+
         mEmailView = (EditText) findViewById(R.id.email);
         mPasswordView = (EditText) findViewById(R.id.password);
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
@@ -76,7 +79,10 @@ public class LoginActivity extends Activity {
 //                MtGpio.getInstance().RFPowerSwitch(false);
                 ActivityList.getInstance().TestMode=true;
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
 
             }else if(password.equals("8888")){
