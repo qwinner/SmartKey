@@ -6,7 +6,7 @@
     <string name="user_name">用户名</string>
     <string name="prompt_password">密码</string>
     <string name="action_sign_in">登陆</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="Complete">完成</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="login_failed">登陆失败，重新登陆</string>
     <string name="error_incorrect_password">This password is incorrect</string>
