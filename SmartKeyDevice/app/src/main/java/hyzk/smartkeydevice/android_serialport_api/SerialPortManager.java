@@ -41,7 +41,6 @@ public class SerialPortManager {
 	private HandlerThread ht;
 	private ReadThread mReadThread;
 
-	//ÿ����һ�ξͷ���һ���µ�ʵ�����
 	public AsyncFingerprint getNewAsyncFingerprint() {
 		if (!isOpen) {
 			try {
@@ -61,17 +60,14 @@ public class SerialPortManager {
 	public SerialPortManager() {
 	}
 
-	//��ȡ�����ʵ�����Ϊ����
 	public static SerialPortManager getInstance() {
 		return mSerialPortManager;
 	}
 
-	//�жϴ����Ƿ��
 	public boolean isOpen() {
 		return isOpen;
 	}
 	
-	//�жϴ����Ƿ��ǵ�һ�δ򿪣�����ǵ�һ�Σ���Ҫ����ʱ��������ģ����г�ʼ����
 	public boolean isFirstOpen() {
 		return firstOpen;
 	}
@@ -86,11 +82,9 @@ public class SerialPortManager {
 		looper = ht.getLooper();
 	}
 
-	//�򿪴��ڣ������Ҫ��ȡ���֤��ָ����Ϣ�������ȴ򿪴��ڣ����ô˷���
 	public void openSerialPort() throws SecurityException, IOException,
 			InvalidParameterException {
 		if (mSerialPort == null) {
-			// �ϵ�
 			MtGpio.getInstance().FPPowerSwitch(true);
 			/* Open the serial port */
 			mSerialPort = new SerialPort(new File(PATH), BAUDRATE, 0);
@@ -104,9 +98,6 @@ public class SerialPortManager {
 		}
 	}
 
-	/**
-	 * �رմ��ڣ������Ҫ��ȡָ�ƻ����֤��Ϣʱ���͹رմ���(���Խ�Լ��ص���)����������˳�ʱ�ر�
-	 */
 	public void closeSerialPort() {
 		if (ht != null) {
 			ht.quit();
@@ -115,7 +106,6 @@ public class SerialPortManager {
 		if (mReadThread != null)
 			mReadThread.interrupt();
 		mReadThread = null;
-		// �ϵ�
 		MtGpio.getInstance().FPPowerSwitch(false);
 		if (mSerialPort != null) {
 			try {
@@ -132,9 +122,6 @@ public class SerialPortManager {
 	}
 
 	protected synchronized int read(byte buffer[], int waittime) {
-		/**
-		 * ��ʱʱ�䣨ms��
-		 */
 		int time = 1000; //4000
 		int sleepTime = 50;
 		int length = time / sleepTime;

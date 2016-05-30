@@ -41,6 +41,31 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+    <!-- 短信 -->
+    <receiver android:name="hyzk.smartkeydevice.modle.SMSReceiver">
+        <intent-filter android:priority="1000">
+            <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+        </intent-filter>
+    </receiver>
+    <!-- 电话 -->
+    <receiver android:name="hyzk.smartkeydevice.modle.PhoneReceiver">
+        <intent-filter android:priority="1000">
+            <action android:name="android.intent.action.PHONE_STATE"/>
+            <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
+        </intent-filter>
+    </receiver>
+    <!-- USB连接指定接受广播的类    -->
+    <receiver
+        android:name="hyzk.smartkeydevice.service.UsbBroadcastReceiver">
+        <intent-filter >
+            <action android:name="NotifyUsbServiceStart"/>
+            <action android:name="NotifyUsbServiceStop" />
+        </intent-filter>
+    </receiver>
+    <!--USB虚拟网络指定服务类-->
+    <service
+        android:name="hyzk.smartkeydevice.service.ConnectService">
+    </service>
 
     <application
         android:allowBackup="true"

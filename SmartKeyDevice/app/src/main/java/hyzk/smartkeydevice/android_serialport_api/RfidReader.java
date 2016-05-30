@@ -18,6 +18,7 @@ public class RfidReader {
 	public static final int STATE_ADDHIGH = 2;
 	
 	private SerialPort mSerialPort = null;
+
 	protected OutputStream mOutputStream;
 	private InputStream mInputStream;
 	private ReadThread mReadThread;
