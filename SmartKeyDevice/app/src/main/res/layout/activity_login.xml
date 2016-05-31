@@ -17,13 +17,13 @@
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
-            android:layout_height="200px"
+            android:layout_height="100px"
             android:orientation="vertical">
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:hint="@string/user_name"
                 android:maxLines="1"
                 android:singleLine="true" />
@@ -31,10 +31,11 @@
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:hint="@string/prompt_password"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:layout_marginTop="1dp"
                 android:singleLine="true" />
 
 
@@ -50,6 +51,18 @@
                 app:cpb_textComplete="@string/Complete"
                 app:cpb_textError="@string/login_failed"
                 app:cpb_textIdle="@string/action_sign_in" />
+
+            <Button
+                android:id="@+id/fingerLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:textColor="@color/white"
+                android:background="@color/cornflowerblue"
+                android:text="@string/finger_login"/>
 
         </LinearLayout>
 
