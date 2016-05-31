@@ -10,8 +10,6 @@
         <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
         <item name="android:windowActionBarOverlay">true</item>
         <item name="android:windowBackground">@null</item>
-        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
-        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
     </style>
 
     <style name="FullscreenActionBarStyle" parent="AppTheme">
@@ -19,6 +17,7 @@
     </style>
 
     <style name="NoActionBar" parent="AppTheme">
+        <item name="android:background">@color/card_shadow</item>
         <item name="android:actionBarStyle">@null</item>
     </style>
 

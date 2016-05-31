@@ -5,6 +5,7 @@ android {
     compileSdkVersion 19
     buildToolsVersion '19.1.0'
 
+
     defaultConfig {
         applicationId "hyzk.smartkeydevice"
         minSdkVersion 16
@@ -18,6 +19,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    repositories {
+        mavenCentral()
+    }
 //    sourceSets {
 //        main {
 //            jniLibs.srcDirs = ['libs','libs/armeabi']
@@ -30,5 +35,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.andreabaccega:android-form-edittext:1.2.1@aar'
     compile 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3'
+    compile 'com.specyci:residemenu:1.6+'
 
 }
