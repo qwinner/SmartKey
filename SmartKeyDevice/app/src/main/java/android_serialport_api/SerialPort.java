@@ -14,7 +14,7 @@
  * limitations under the License. 
  */
 
-package hyzk.smartkeydevice.android_serialport_api;
+package android_serialport_api;
 
 import java.io.File;
 import java.io.FileDescriptor;

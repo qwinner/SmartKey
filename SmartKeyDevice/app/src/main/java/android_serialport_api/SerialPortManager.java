@@ -1,23 +1,16 @@
-package hyzk.smartkeydevice.android_serialport_api;
+package android_serialport_api;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.security.InvalidParameterException;
 
-import android.content.SharedPreferences;
-import hyzk.smartkeydevice.fpi.MtGpio;
+import android.fpi.MtGpio;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.TextView;
 
 public class SerialPortManager {
 	
@@ -106,7 +99,7 @@ public class SerialPortManager {
 		if (mReadThread != null)
 			mReadThread.interrupt();
 		mReadThread = null;
-//		MtGpio.getInstance().FPPowerSwitch(false);
+		MtGpio.getInstance().FPPowerSwitch(false);
 		if (mSerialPort != null) {
 			try {
 				mOutputStream.close();

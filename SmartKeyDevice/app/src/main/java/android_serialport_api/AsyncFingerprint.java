@@ -1,18 +1,12 @@
-package hyzk.smartkeydevice.android_serialport_api;
+package android_serialport_api;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.zip.DataFormatException;
 
 import hyzk.smartkeydevice.utils.DataUtils;
-import hyzk.smartkeydevice.utils.ToastUtil;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;

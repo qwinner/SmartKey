@@ -32,7 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         resideMenu = new ResideMenu(this);
         resideMenu.setBackground(R.drawable.menu_background);
         resideMenu.attachToActivity(this);
-        resideMenu.setMenuListener(menuListener);
+        //resideMenu.setMenuListener(menuListener);
         //valid scale factor is between 0.0f and 1.0f. leftmenu'width is 150dip.
         resideMenu.setScaleValue(0.6f);
         resideMenu.setShadowVisible(false);
@@ -79,22 +79,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         resideMenu.closeMenu();
     }
+//
+//    private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
+//        @Override
+//        public void openMenu() {
+//            ToastUtil.showToastTop(MainActivity.this, "Menu is opened");
+//        }
+//
+//        @Override
+//        public void closeMenu() {
+//            ToastUtil.showToastTop(MainActivity.this, "Menu is closed");
+//        }
+//    };
 
-    private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
-        @Override
-        public void openMenu() {
-            ToastUtil.showToastTop(MainActivity.this, "Menu is opened");
-        }
-
-        @Override
-        public void closeMenu() {
-            ToastUtil.showToastTop(MainActivity.this, "Menu is closed");
-        }
-    };
-
-
-    // What good method is to access resideMenu？
-    public ResideMenu getResideMenu(){
-        return resideMenu;
-    }
 }

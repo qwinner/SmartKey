@@ -1,16 +1,13 @@
-package hyzk.smartkeydevice.android_serialport_api;
+package android_serialport_api;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.security.InvalidParameterException;
-import java.util.Timer;
-import java.util.TimerTask;
 
-import hyzk.smartkeydevice.fpi.MtGpio;
+import android.fpi.MtGpio;
 import android.os.Handler;
-import android.os.Message;
 
 public class BarcodeReader {
 	private static BarcodeReader instance;
