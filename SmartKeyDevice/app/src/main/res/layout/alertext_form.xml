@@ -5,11 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
         android:id="@+id/etFinger"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_gravity="center_vertical|center_horizontal"
         android:src="@drawable/finger"/>
+    <TextView
+        android:id ="@+id/tvFpStatus"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:text="@string/finger_readme"
+        android:textColor="@color/help_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

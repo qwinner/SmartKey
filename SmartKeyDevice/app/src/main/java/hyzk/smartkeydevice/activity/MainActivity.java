@@ -12,6 +12,7 @@ import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
 import hyzk.smartkeydevice.R;
+import hyzk.smartkeydevice.app.ActivityList;
 import hyzk.smartkeydevice.utils.ToastUtil;
 
 public class MainActivity extends Activity implements View.OnClickListener {
@@ -25,6 +26,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityList.getInstance().addActivity(this);
         setUpMenu();
     }
 

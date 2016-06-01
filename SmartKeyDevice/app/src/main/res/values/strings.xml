@@ -4,11 +4,23 @@
 
     <!-- Strings related to login -->
     <string name="user_name">用户名</string>
-    <string name="finger_login">指纹登陆</string>
+    <string name="finger_login">指纹登录</string>
     <string name="finger_readme">将手指放在指纹按钮上</string>
     <string name="prompt_password">密码</string>
     <string name="action_sign_in">登陆</string>
     <string name="Complete">完成</string>
     <string name="login_failed">登陆失败，重新登陆</string>
     <string name="cancel">取消</string>
+
+    <string name="txt_fingerplace">请按手指&#8230;</string>
+    <string name="txt_fg_read">指纹读取中...</string>
+    <string name="txt_fg_process">处理中...</string>
+    <string name="txt_fg_rd_success">指纹读取成功</string>
+    <string name="txt_fg_identify">指纹识别中...</string>
+    <string name="txt_fg_gen_failed">生成特征值失败</string>
+    <string name="txt_fg_ok">指纹验证成功</string>
+    <string name="txt_fg_failed">指纹验证失败</string>
+    <string name="txt_fg_timeout">上传图像超时,请重来</string>
+
+
 </resources>
