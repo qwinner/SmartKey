@@ -169,7 +169,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
         ActivityList.getInstance().CheckDate="Check";//ExtApi.getDataForID();
         ActivityList.getInstance().DeviceSN= ExtApi.getDeviceID(this);
 
-       // mEmailView.setText(ActivityList.getInstance().DefaultUser);
+        mEmailView.setText(ActivityList.getInstance().DefaultUser);
         ExtApi.CreateDir(ActivityList.getInstance().DirWork);
         ExtApi.CreateDir(ActivityList.getInstance().TmpWork);
         ExtApi.CreateDir(ActivityList.getInstance().CacheWork);
@@ -184,6 +184,14 @@ public class LoginActivity extends Activity implements OnItemClickListener {
         registerReceiver(mBatInfoReceiver, filter);
 
         SetScreenOffTimeOut();
+        GlobalData.LoadAdminList();
+        GlobalData.LoadHistoryList();
+
+        for(int n=0;n<GlobalData.adminList.size();n++){
+            if(ActivityList.getInstance().DefaultUser.equals(GlobalData.adminList.get(n).username)){
+                GlobalData.adminItem=GlobalData.adminList.get(n);
+            }
+        }
         InitRunnable();
     }
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -81,17 +82,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         resideMenu.closeMenu();
     }
-//
-//    private ResideMenu.OnMenuListener menuListener = new ResideMenu.OnMenuListener() {
-//        @Override
-//        public void openMenu() {
-//            ToastUtil.showToastTop(MainActivity.this, "Menu is opened");
-//        }
-//
-//        @Override
-//        public void closeMenu() {
-//            ToastUtil.showToastTop(MainActivity.this, "Menu is closed");
-//        }
-//    };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            return true;
+        }else if(keyCode == KeyEvent.KEYCODE_HOME){
+            return true;
+        }else if(keyCode == KeyEvent.KEYCODE_SEARCH){
+            return true;
+        }else {}
+        return super.onKeyDown(keyCode, event);
+    }
 
 }
