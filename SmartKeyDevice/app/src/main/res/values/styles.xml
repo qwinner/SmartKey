@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="AppTheme">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
 
     </style>
@@ -16,8 +16,8 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
-    <style name="NoActionBar" parent="AppTheme">
-        <item name="android:background">@color/card_shadow</item>
+    <style name="NoActionBar" parent="Theme.AppCompat.Light">
+        <!--<item name="android:background">@color/card_shadow</item>-->
         <item name="android:actionBarStyle">@null</item>
     </style>
 

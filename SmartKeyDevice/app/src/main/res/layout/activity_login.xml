@@ -6,43 +6,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
     <ScrollView
         android:id="@+id/login_form"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="120dp">
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
-            android:layout_height="100px"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/email"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:hint="@string/user_name"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/password"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24dp"
+                    android:textColor="@color/contents_text"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:text="登录"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:hint="@string/prompt_password"
-                android:inputType="textPassword"
-                android:maxLines="1"
-                android:layout_marginTop="1dp"
-                android:singleLine="true" />
-
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/contents_text"
+                    android:background="@color/encode_view"
+                    android:hint="@string/user_name"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <EditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/contents_text"
+                    android:background="@color/encode_view"
+                    android:hint="@string/prompt_password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:layout_marginTop="3dp"
+                    android:singleLine="true" />
+            </LinearLayout>
 
             <com.dd.CircularProgressButton
                 android:id="@+id/btnWithText"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
@@ -55,9 +77,9 @@
             <Button
                 android:id="@+id/fingerLogin"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:textSize="18sp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:textColor="@color/white"
