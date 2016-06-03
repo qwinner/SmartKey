@@ -45,123 +45,92 @@
         android:layout_width="match_parent"
         android:layout_marginTop="50dp"
         android:background="@color/card_shadow"
-        android:layout_height="1110dp">
-        <RelativeLayout
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:orientation="vertical">
                 <DoughnutProgress
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
                     android:layout_centerInParent="true"/>
-                
-                <!--<ImageView-->
-                    <!--android:id="@+id/image"-->
-                    <!--android:scaleType="center"-->
-                    <!--android:background="@drawable/menu_background"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent" />-->
+
             </LinearLayout>
             <LinearLayout
-                android:layout_marginTop="305dp"
                 android:layout_width="match_parent"
                 android:id="@+id/container"
                 android:orientation="vertical"
-                android:layout_height="205dp">
+                android:layout_height="200dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:background="@color/black_overlay"
+                    android:layout_height="1dp" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        >
+
+                        <ImageButton
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:text="111"
+                            android:src="@drawable/icon_exit"
+                            android:background="@android:color/transparent"
+                            android:layout_height="match_parent" />
+
+                        <ImageButton
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/icon_exit"
+                            android:background="@android:color/transparent"
+                            android:text="111"
+                            android:layout_height="match_parent" />
+
+                        <ImageButton
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/icon_exit"
+                            android:background="@android:color/transparent"
+                            android:text="222"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:orientation="horizontal"
-                        android:layout_height="100dp">
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
+                        <Button
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:text="111"
+                            android:layout_height="match_parent" />
 
                         <Button
                             android:layout_width="0dp"
                             android:layout_weight="1"
+                            android:background="@android:color/transparent"
                             android:text="111"
-                            android:background="@color/white"
                             android:layout_height="match_parent" />
-                        <TextView
-                            android:layout_width="1dp"
-                            android:background="@color/black_overlay"
-                            android:layout_height="match_parent" />
+
                         <Button
                             android:layout_width="0dp"
                             android:layout_weight="1"
-                            android:text="111"
-                            android:background="@color/white"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:layout_width="1dp"
-                            android:background="@color/black_overlay"
-                            android:layout_height="match_parent" />
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
                             android:text="222"
-                            android:background="@color/white"
                             android:layout_height="match_parent" />
                     </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:background="@color/black_overlay"
-                        android:layout_height="1dp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-                        android:layout_height="100dp">
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:text="111"
-                            android:background="@color/white"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:layout_width="1dp"
-                            android:background="@color/black_overlay"
-                            android:layout_height="match_parent" />
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:text="111"
-                            android:background="@color/white"
-                            android:layout_height="match_parent" />
-                        <TextView
-                            android:layout_width="1dp"
-                            android:background="@color/black_overlay"
-                            android:layout_height="match_parent" />
-                        <Button
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:text="222"
-                            android:background="@color/white"
-                            android:layout_height="match_parent" />
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:background="@color/black_overlay"
-                        android:layout_height="1dp" />
 
             </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="510dp"
-                android:layout_width="match_parent"
-                android:layout_height="600dp"
-                android:background="@color/card_shadow"
-                android:orientation="vertical">
-                <!--<ListView-->
-                    <!--android:background="@color/card_shadow"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent">-->
-
-                <!--</ListView>-->
-
-            </LinearLayout>
-
-        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
 
 
