@@ -3,10 +3,15 @@ package hyzk.smartkeydevice.activity;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.special.ResideMenu.ResideMenu;
@@ -15,6 +20,8 @@ import com.special.ResideMenu.ResideMenuItem;
 import hyzk.smartkeydevice.R;
 import hyzk.smartkeydevice.app.ActivityList;
 import hyzk.smartkeydevice.utils.ToastUtil;
+import hyzk.smartkeydevice.widget.RadarScanView;
+import hyzk.smartkeydevice.widget.RippleView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -23,12 +30,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ResideMenuItem itemSettings;
     private ResideMenuItem itemExit;
 
+    private RadarScanView radar;
+    private RippleView rippleView;
+    private boolean radarVisible = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActivityList.getInstance().addActivity(this);
         setUpMenu();
+        InitRadar();
     }
 
     private void setUpMenu() {
@@ -62,6 +74,42 @@ public class MainActivity extends Activity implements View.OnClickListener {
         });
     }
 
+    private void InitRadar(){
+        radar = (RadarScanView)findViewById(R.id.radarView);
+        rippleView = (RippleView) findViewById(R.id.rippleView);
+        rippleView.setMode(RippleView.MODE_OUT);
+        rippleView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                if(radarVisible) {
+                    StopRadar();
+                }else{
+                    StartRadar();
+                }
+            }
+        });
+        int fontColor = 0xff404040;
+        int shadowColor = 0xFFEBCD;
+        int TEXT_SIZE = 15;
+        rippleView.setText(this.getResources().getString(R.string.bt_start_radar));
+        rippleView.setTextColor(fontColor);
+        rippleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TEXT_SIZE);
+        rippleView.setShadowLayer(1, 1, 1, shadowColor);
+        rippleView.setGravity(Gravity.CENTER);
+    }
+    private void StartRadar(){
+        radar.Show(true);
+        rippleView.startRippleAnimation();
+        rippleView.setText(this.getResources().getString(R.string.bt_stop_radar));
+        radarVisible = true;
+    }
+
+    private void StopRadar(){
+        radar.Show(false);
+        rippleView.stopRippleAnimation();
+        rippleView.setText(this.getResources().getString(R.string.bt_start_radar));
+        radarVisible = false;
+    }
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return resideMenu.dispatchTouchEvent(ev);

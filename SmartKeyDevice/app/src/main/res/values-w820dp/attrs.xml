@@ -8,5 +8,9 @@
         <attr name="metaButtonBarStyle" format="reference" />
         <attr name="metaButtonBarButtonStyle" format="reference" />
     </declare-styleable>
-
+    <declare-styleable name="RadarScanView">
+        <attr name="circleColor" format="color"/>
+        <attr name="radarColor" format="color"/>
+        <attr name="tailColor" format="color"/>
+    </declare-styleable>
 </resources>

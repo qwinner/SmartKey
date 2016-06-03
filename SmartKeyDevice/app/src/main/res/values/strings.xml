@@ -22,5 +22,8 @@
     <string name="txt_fg_failed">指纹验证失败</string>
     <string name="txt_fg_timeout">上传图像超时,请重来</string>
 
+    <string name="bt_start_radar">开始读卡</string>
+    <string name="bt_stop_radar">取消读卡</string>
+
 
 </resources>
