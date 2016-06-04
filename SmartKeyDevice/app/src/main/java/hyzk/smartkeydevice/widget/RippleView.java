@@ -19,27 +19,17 @@ public class RippleView extends TextView
     private static final String tag = RippleView.class.getSimpleName();
 
     private static final int DEFAULT_RIPPLE_COLOR = Color.rgb(0x33, 0x99, 0xcc);
-    /**
-     * 波纹的颜色
-     */
+
     private int mRippleColor = DEFAULT_RIPPLE_COLOR;
-    /**
-     * 默认的波纹的最小值
-     */
+
     private int mMinSize = 300;
-    /**
-     * 波纹动画效果是否正在进行
-     */
+
     private boolean animationRunning = false;
 
     private int currentProgress = 0;
-    /**
-     * 动画中波纹的个数
-     */
+
     private int mRippleNum = 4;
-    /**
-     * //无限长的数值，使动画不停止
-     */
+
     private int mTotalTime = 1000 * 1000;
 
     public static final int MODE_IN = 1;
@@ -207,9 +197,6 @@ public class RippleView extends TextView
             stopRippleAnimation();
     }
 
-    /**
-     * 自定义估值器
-     */
     private TypeEvaluator mProgressEvaluator = new TypeEvaluator()
     {
 

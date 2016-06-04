@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "hyzk.smartkeydevice"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
@@ -20,18 +20,23 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/maven/com.nineoldandroids/library/pom.properties'
+    }
 
     repositories {
         mavenCentral()
-//        maven(){
-//            url "https://jitpack.io"
-//        }
     }
-//    sourceSets {
-//        main {
-//            jniLibs.srcDirs = ['libs','libs/armeabi']
-//        }
-//    }
+
 }
 
 dependencies {
@@ -45,11 +50,10 @@ dependencies {
     compile files('libs/core-3.1.1-SNAPSHOT.jar')
     compile files('libs/locSDK_4.2.jar')
     compile files('libs/httpmime-4.3.jar')
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:cardview-v7:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
     compile 'com.bigkoo:alertview:1.0.2'
     compile 'org.greenrobot:eventbus:3.0.0'
+
+    //compile 'com.facebook.fresco:fresco:0.9.0+'
+
 
 }
