@@ -1,5 +1,6 @@
 package hyzk.smartkeydevice.activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 
@@ -28,17 +29,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-
-
-import com.facebook.common.file.FileUtils;
-
-import java.util.ArrayList;
 
 import hyzk.smartkeydevice.R;
 import hyzk.smartkeydevice.utils.Bimp;
 import hyzk.smartkeydevice.utils.ImageItem;
-import hyzk.smartkeydevice.utils.PublicWay;
 
 public class InspectionActivity extends Activity {
 
@@ -52,25 +46,14 @@ public class InspectionActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inspection);
-
-        bimap = BitmapFactory.decodeResource(
-                getResources(),
-                R.drawable.icon_addpic_unfocused);
-
-
         parentView = getLayoutInflater().inflate(R.layout.activity_selectimg, null);
         setContentView(parentView);
         Init();
     }
     public void Init() {
-
         pop = new PopupWindow(InspectionActivity.this);
-
         View view = getLayoutInflater().inflate(R.layout.item_popupwindows, null);
-
         ll_popup = (LinearLayout) view.findViewById(R.id.ll_popup);
-
         pop.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
         pop.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         pop.setBackgroundDrawable(new BitmapDrawable());
@@ -143,7 +126,7 @@ public class InspectionActivity extends Activity {
 
     }
 
-//    @SuppressLint("HandlerLeak")
+    @SuppressLint("HandlerLeak")
     public class GridAdapter extends BaseAdapter {
         private LayoutInflater inflater;
         private int selectedPosition = -1;
@@ -287,6 +270,18 @@ public class InspectionActivity extends Activity {
                 }
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            return true;
+        }else if(keyCode == KeyEvent.KEYCODE_HOME){
+            return true;
+        }else if(keyCode == KeyEvent.KEYCODE_SEARCH){
+            return true;
+        }else {}
+        return super.onKeyDown(keyCode, event);
     }
 
 

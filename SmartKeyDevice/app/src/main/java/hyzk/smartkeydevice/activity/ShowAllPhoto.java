@@ -23,9 +23,10 @@ import hyzk.smartkeydevice.R;
 import hyzk.smartkeydevice.adapter.AlbumGridViewAdapter;
 import hyzk.smartkeydevice.utils.Bimp;
 import hyzk.smartkeydevice.utils.ImageItem;
-import hyzk.smartkeydevice.utils.PublicWay;
 
 public class ShowAllPhoto extends Activity {
+	private int PublicWaynum = 9;
+
 	private GridView gridView;
 	private ProgressBar progressBar;
 	private AlbumGridViewAdapter gridImageAdapter;
@@ -46,7 +47,7 @@ public class ShowAllPhoto extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.plugin_camera_show_all_photo);
-		PublicWay.activityList.add(this);
+
 		mContext = this;
 		back =      (Button) findViewById(R.id.showallphoto_back);
 		cancel =    (Button) findViewById(R.id.showallphoto_cancel);
@@ -82,6 +83,7 @@ public class ShowAllPhoto extends Activity {
 				intent.putExtra("position", "2");
 				intent.setClass(ShowAllPhoto.this, GalleryActivity.class);
 				startActivity(intent);
+				finish();
 			}
 		}
 
@@ -95,17 +97,19 @@ public class ShowAllPhoto extends Activity {
 		}
 
 		public void onClick(View v) {
-			intent.setClass(ShowAllPhoto.this, ImageFile.class);
+			intent.setClass(ShowAllPhoto.this, ImageFileActivity.class);
 			startActivity(intent);
+            finish();
 		}
 
 	}
 
 	private class CancelListener implements OnClickListener {
 		public void onClick(View v) {
-			Bimp.tempSelectBitmap.clear();
-			intent.setClass(mContext, InspectionActivity.class);
+			//Bimp.tempSelectBitmap.clear();
+			intent.setClass(mContext, ImageFileActivity.class);
 			startActivity(intent);
+            finish();
 		}
 	}
 
@@ -128,10 +132,10 @@ public class ShowAllPhoto extends Activity {
 					public void onItemClick(final ToggleButton toggleButton,
 							int position, boolean isChecked,
 							Button button) {
-						if (Bimp.tempSelectBitmap.size() >= PublicWay.num&&isChecked) {
+						if (Bimp.tempSelectBitmap.size() >= PublicWaynum&&isChecked) {
 							button.setVisibility(View.GONE);
 							toggleButton.setChecked(false);
-							Toast.makeText(ShowAllPhoto.this, R.string.only_choose_num, 200)
+							Toast.makeText(ShowAllPhoto.this, R.string.only_choose_num, Toast.LENGTH_SHORT)
 									.show();
 							return;
 						}
@@ -139,12 +143,11 @@ public class ShowAllPhoto extends Activity {
 						if (isChecked) {
 							button.setVisibility(View.VISIBLE);
 							Bimp.tempSelectBitmap.add(dataList.get(position));
-							okButton.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size()
-									+ "/"+PublicWay.num+")");
+                            preview.setText(getString(R.string.preview)+"(" + String.valueOf(Bimp.tempSelectBitmap.size()) + "/"+String.valueOf(PublicWaynum)+")");
 						} else {
 							button.setVisibility(View.GONE);
 							Bimp.tempSelectBitmap.remove(dataList.get(position));
-							okButton.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+                            preview.setText(getString(R.string.preview)+"(" + String.valueOf(Bimp.tempSelectBitmap.size()) + "/"+String.valueOf(PublicWaynum)+")");
 						}
 						isShowOkBt();
 					}
@@ -166,7 +169,7 @@ public class ShowAllPhoto extends Activity {
 
 	public void isShowOkBt() {
 		if (Bimp.tempSelectBitmap.size() > 0) {
-			okButton.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+            preview.setText(getString(R.string.preview)+"(" + String.valueOf(Bimp.tempSelectBitmap.size()) + "/"+String.valueOf(PublicWaynum)+")");
 			preview.setPressed(true);
 			okButton.setPressed(true);
 			preview.setClickable(true);
@@ -174,7 +177,7 @@ public class ShowAllPhoto extends Activity {
 			okButton.setTextColor(Color.WHITE);
 			preview.setTextColor(Color.WHITE);
 		} else {
-			okButton.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+            preview.setText(getString(R.string.preview)+"(" + String.valueOf(Bimp.tempSelectBitmap.size()) + "/"+String.valueOf(PublicWaynum)+")");
 			preview.setPressed(false);
 			preview.setClickable(false);
 			okButton.setPressed(false);
@@ -187,7 +190,7 @@ public class ShowAllPhoto extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			this.finish();
-			intent.setClass(ShowAllPhoto.this, ImageFile.class);
+			intent.setClass(ShowAllPhoto.this, ImageFileActivity.class);
 			startActivity(intent);
 		}
 

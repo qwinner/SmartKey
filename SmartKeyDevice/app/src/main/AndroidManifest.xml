@@ -100,6 +100,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".activity.AlbumActivity"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".activity.ImageFileActivity" >
+        </activity>
+        <activity
+            android:name=".activity.ShowAllPhoto" >
+        </activity>
+        <activity
+            android:name=".activity.GalleryActivity">
+        </activity>
     </application>
 
 </manifest>

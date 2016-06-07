@@ -20,21 +20,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import hyzk.smartkeydevice.utils.Bimp;
-import hyzk.smartkeydevice.utils.PublicWay;
 import hyzk.smartkeydevice.zoom.PhotoView;
 import hyzk.smartkeydevice.zoom.ViewPagerFixed;
 
 import hyzk.smartkeydevice.R;
 
 public class GalleryActivity extends Activity {
+	private int PublicWaynum = 9;
+
 	private Intent intent;
-
     private Button back_bt;
-
 	private Button send_bt;
-
 	private Button del_bt;
-
 	private TextView positionTextView;
 	private int position;
 	private int location = 0;
@@ -55,6 +52,7 @@ public class GalleryActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.plugin_camera_gallery);// 切屏到主界面
 		mContext = this;
+		positionTextView = (TextView)findViewById(R.id.textview);
 		back_bt = (Button) findViewById(R.id.gallery_back);
 		send_bt = (Button) findViewById(R.id.send_button);
 		del_bt =   (Button)findViewById(R.id.gallery_del);
@@ -62,7 +60,6 @@ public class GalleryActivity extends Activity {
 		send_bt.setOnClickListener(new GallerySendListener());
 		del_bt.setOnClickListener(new DelListener());
 		intent = getIntent();
-		Bundle bundle = intent.getExtras();
 		position = Integer.parseInt(intent.getStringExtra("position"));
 		isShowOkBt();
 		// 为发送按钮设置文字
@@ -86,7 +83,7 @@ public class GalleryActivity extends Activity {
 		}
 
 		public void onPageScrolled(int arg0, float arg1, int arg2) {
-
+			positionTextView.setText("(" + String.valueOf(location + 1) + "/"+String.valueOf(PublicWaynum)+")");
 		}
 
 		public void onPageScrollStateChanged(int arg0) {
@@ -108,20 +105,19 @@ public class GalleryActivity extends Activity {
 	private class BackListener implements OnClickListener {
 
 		public void onClick(View v) {
-			intent.setClass(GalleryActivity.this, ImageFile.class);
+			intent.setClass(GalleryActivity.this, ImageFileActivity.class);
 			startActivity(intent);
 		}
 	}
-
+	//删除当前图片
 	private class DelListener implements OnClickListener {
-
 		public void onClick(View v) {
 			if (listViews.size() == 1) {
 				Bimp.tempSelectBitmap.clear();
 				Bimp.max = 0;
-				send_bt.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
-				Intent intent = new Intent("data.broadcast.action");  
-                sendBroadcast(intent);  
+				positionTextView.setText("(" + String.valueOf(Bimp.tempSelectBitmap.size()) + "/"+String.valueOf(PublicWaynum)+")");
+				Intent intent = new Intent("data.broadcast.action");
+                sendBroadcast(intent);
 				finish();
 			} else {
 				Bimp.tempSelectBitmap.remove(location);
@@ -129,7 +125,7 @@ public class GalleryActivity extends Activity {
 				pager.removeAllViews();
 				listViews.remove(location);
 				adapter.setListViews(listViews);
-				send_bt.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+				positionTextView.setText("(" + String.valueOf(Bimp.tempSelectBitmap.size()) + "/"+String.valueOf(PublicWaynum)+")");
 				adapter.notifyDataSetChanged();
 			}
 		}
@@ -146,7 +142,7 @@ public class GalleryActivity extends Activity {
 
 	public void isShowOkBt() {
 		if (Bimp.tempSelectBitmap.size() > 0) {
-			send_bt.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+			positionTextView.setText("(" + Bimp.tempSelectBitmap.size() + "/"+PublicWaynum+")");
 			send_bt.setPressed(true);
 			send_bt.setClickable(true);
 			send_bt.setTextColor(Color.WHITE);
@@ -163,13 +159,17 @@ public class GalleryActivity extends Activity {
 		
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if(position==1){
-				this.finish();
-				intent.setClass(GalleryActivity.this, AlbumActivity.class);
+				intent.setClass(GalleryActivity.this, InspectionActivity.class);//AlbumActivity
 				startActivity(intent);
-			}else if(position==2){
 				this.finish();
+			}else if(position==2){
 				intent.setClass(GalleryActivity.this, ShowAllPhoto.class);
 				startActivity(intent);
+				this.finish();
+			}else if(position==3){
+				intent.setClass(GalleryActivity.this, AlbumActivity.class);
+				startActivity(intent);
+				this.finish();
 			}
 		}
 		return true;

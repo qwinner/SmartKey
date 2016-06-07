@@ -43,7 +43,14 @@
         android:layout_height="45dp"
         android:layout_alignParentBottom="true"
         android:background="@drawable/plugin_camera_bottom_bar" >
- 		
+         <TextView
+             android:id="@+id/textview"
+             android:layout_width="90dp"
+             android:layout_height="30dp"
+             android:layout_alignParentLeft="true"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="10dp"
+             />
         <Button
             android:id="@+id/send_button"
             android:layout_width="90dp"

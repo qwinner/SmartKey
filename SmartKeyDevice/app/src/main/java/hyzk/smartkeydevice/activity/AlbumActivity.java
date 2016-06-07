@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.GridView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -28,10 +27,12 @@ import hyzk.smartkeydevice.utils.AlbumHelper;
 import hyzk.smartkeydevice.utils.Bimp;
 import hyzk.smartkeydevice.utils.ImageBucket;
 import hyzk.smartkeydevice.utils.ImageItem;
-import hyzk.smartkeydevice.utils.PublicWay;
 
 
 public class AlbumActivity extends Activity {
+
+	private int PublicWaynum = 9;
+
 	private GridView gridView;
 	private TextView tv;
 	private AlbumGridViewAdapter gridImageAdapter;
@@ -48,7 +49,6 @@ public class AlbumActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.plugin_camera_album);
-		PublicWay.activityList.add(this);
 		mContext = this;
 		IntentFilter filter = new IntentFilter("data.broadcast.action");
 		registerReceiver(broadcastReceiver, filter);  
@@ -72,7 +72,7 @@ public class AlbumActivity extends Activity {
 	private class PreviewListener implements OnClickListener {
 		public void onClick(View v) {
 			if (Bimp.tempSelectBitmap.size() > 0) {
-				intent.putExtra("position", "1");
+				intent.putExtra("position", "3");
 				intent.setClass(AlbumActivity.this, GalleryActivity.class);
 				startActivity(intent);
 			}
@@ -92,7 +92,7 @@ public class AlbumActivity extends Activity {
 
 	private class BackListener implements OnClickListener {
 		public void onClick(View v) {
-			intent.setClass(AlbumActivity.this, ImageFile.class);
+			intent.setClass(AlbumActivity.this, ImageFileActivity.class);
 			startActivity(intent);
 		}
 	}
@@ -102,6 +102,7 @@ public class AlbumActivity extends Activity {
 			Bimp.tempSelectBitmap.clear();
 			intent.setClass(mContext, InspectionActivity.class);
 			startActivity(intent);
+            finish();
 		}
 	}
 
@@ -121,6 +122,8 @@ public class AlbumActivity extends Activity {
 		back.setOnClickListener(new BackListener());
 		preview = (Button) findViewById(R.id.preview);
 		preview.setOnClickListener(new PreviewListener());
+		preview.setText(R.string.preview+"(" + String.valueOf(Bimp.tempSelectBitmap.size())
+				+ "/"+String.valueOf(PublicWaynum)+")");
 		intent = getIntent();
 		Bundle bundle = intent.getExtras();
 		gridView = (GridView) findViewById(R.id.myGrid);
@@ -130,8 +133,6 @@ public class AlbumActivity extends Activity {
 		tv = (TextView) findViewById(R.id.myText);
 		gridView.setEmptyView(tv);
 		okButton = (Button) findViewById(R.id.ok_button);
-		okButton.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size()
-				+ "/"+PublicWay.num+")");
 	}
 
 	private void initListener() {
@@ -142,24 +143,24 @@ public class AlbumActivity extends Activity {
 					@Override
 					public void onItemClick(final ToggleButton toggleButton,
 							int position, boolean isChecked,Button chooseBt) {
-						if (Bimp.tempSelectBitmap.size() >= PublicWay.num) {
+						if (Bimp.tempSelectBitmap.size() >= PublicWaynum) {
 							toggleButton.setChecked(false);
 							chooseBt.setVisibility(View.GONE);
 							if (!removeOneData(dataList.get(position))) {
-								Toast.makeText(AlbumActivity.this, R.string.only_choose_num,
-										200).show();
+								Toast.makeText(AlbumActivity.this, getString(R.string.only_choose_num),
+										Toast.LENGTH_SHORT).show();
 							}
 							return;
 						}
 						if (isChecked) {
 							chooseBt.setVisibility(View.VISIBLE);
 							Bimp.tempSelectBitmap.add(dataList.get(position));
-							okButton.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size()
-									+ "/"+PublicWay.num+")");
+							preview.setText(getString(R.string.preview)+"(" + String.valueOf(Bimp.tempSelectBitmap.size())
+									+ "/"+String.valueOf(PublicWaynum)+")");
 						} else {
 							Bimp.tempSelectBitmap.remove(dataList.get(position));
 							chooseBt.setVisibility(View.GONE);
-							okButton.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+							preview.setText(getString(R.string.preview)+"(" + String.valueOf(Bimp.tempSelectBitmap.size()) + "/"+String.valueOf(PublicWaynum)+")");
 						}
 						isShowOkBt();
 					}
@@ -172,7 +173,7 @@ public class AlbumActivity extends Activity {
 	private boolean removeOneData(ImageItem imageItem) {
 			if (Bimp.tempSelectBitmap.contains(imageItem)) {
 				Bimp.tempSelectBitmap.remove(imageItem);
-				okButton.setText(R.string.finish+"(" +Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+				preview.setText(getString(R.string.preview)+"(" +String.valueOf(Bimp.tempSelectBitmap.size()) + "/"+String.valueOf(PublicWaynum)+")");
 				return true;
 			}
 		return false;
@@ -180,7 +181,7 @@ public class AlbumActivity extends Activity {
 	
 	public void isShowOkBt() {
 		if (Bimp.tempSelectBitmap.size() > 0) {
-			okButton.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+			preview.setText(getString(R.string.preview)+"(" + String.valueOf(Bimp.tempSelectBitmap.size()) + "/"+String.valueOf(PublicWaynum)+")");
 			preview.setPressed(true);
 			okButton.setPressed(true);
 			preview.setClickable(true);
@@ -188,7 +189,7 @@ public class AlbumActivity extends Activity {
 			okButton.setTextColor(Color.WHITE);
 			preview.setTextColor(Color.WHITE);
 		} else {
-			okButton.setText(R.string.finish+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWay.num+")");
+			preview.setText(getString(R.string.preview)+"(" + Bimp.tempSelectBitmap.size() + "/"+PublicWaynum+")");
 			preview.setPressed(false);
 			preview.setClickable(false);
 			okButton.setPressed(false);
@@ -200,8 +201,9 @@ public class AlbumActivity extends Activity {
 
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			intent.setClass(AlbumActivity.this, ImageFile.class);
+			intent.setClass(AlbumActivity.this, InspectionActivity.class);
 			startActivity(intent);
+            finish();
 		}
 		return false;
 
