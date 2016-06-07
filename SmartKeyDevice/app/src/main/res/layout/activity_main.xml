@@ -74,64 +74,17 @@
             android:layout_width="match_parent"
             android:background="@color/black_overlay"
             android:layout_height="1dp" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                >
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="111"
-                    android:src="@drawable/icon_exit"
-                    android:background="@android:color/transparent"
-                    android:layout_height="match_parent" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/icon_exit"
-                    android:background="@android:color/transparent"
-                    android:text="111"
-                    android:layout_height="match_parent" />
-
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:src="@drawable/icon_exit"
-                    android:background="@android:color/transparent"
-                    android:text="222"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="0dp"
-                android:layout_weight="1">
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:text="111"
-                    android:layout_height="match_parent" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:text="111"
-                    android:layout_height="match_parent" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:text="222"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
+        <hyzk.smartkeydevice.adapter.MyGridView
+            android:id="@+id/gridview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:horizontalSpacing="0.0dip"
+            android:listSelector="@null"
+            android:numColumns="2"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="0.0dip" />
+            
 
     </LinearLayout>
 

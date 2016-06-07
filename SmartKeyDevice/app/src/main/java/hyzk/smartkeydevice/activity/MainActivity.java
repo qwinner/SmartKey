@@ -18,6 +18,8 @@ import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
 import hyzk.smartkeydevice.R;
+import hyzk.smartkeydevice.adapter.MyGridAdapter;
+import hyzk.smartkeydevice.adapter.MyGridView;
 import hyzk.smartkeydevice.app.ActivityList;
 import hyzk.smartkeydevice.utils.ToastUtil;
 import hyzk.smartkeydevice.widget.RadarScanView;
@@ -34,6 +36,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private RippleView rippleView;
     private boolean radarVisible = false;
 
+    private MyGridView gridview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ActivityList.getInstance().addActivity(this);
         setUpMenu();
         InitRadar();
+        gridview=(MyGridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new MyGridAdapter(this));
     }
 
     private void setUpMenu() {

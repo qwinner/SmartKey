@@ -214,4 +214,10 @@
     <color name="none_color">#00000000</color>
     <color name="plugin_camera_black">#000000</color>
     <color name="albumback">#E1E0DE</color>
+
+
+
+    <color name="line">#ffd3dde6</color>
+    <color name="griditems_bg">#ffe8ecef</color>
+    <color name="commo_text_color">#ff333333</color>
 </resources>
