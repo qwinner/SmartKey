@@ -3,13 +3,18 @@ package android.fpi;
 
 import android.util.Log;
 
+/**
+ * @hide
+ * @author 1
+ *
+ */
 public class MtGpio {
 	
 	private boolean mOpen = false;
 	private static MtGpio mMe = null;
 	private MtGpio() {
 		mOpen = openDev()>=0?true:false;
-		Log.d("MtGpio","openDev->ret:"+mOpen);
+		Log.d("MtGpio", "openDev->ret:" + mOpen);
 	}
 	
 	public static MtGpio getInstance(){
@@ -89,6 +94,57 @@ public class MtGpio {
 		}
 	}
 	
+	public void RFInit(){	//13.56MHZ
+		sGpioMode(12,0);	//RF_RES
+		sGpioDir(12,1);
+		sGpioOut(12,1);
+		
+		sGpioMode(80,0);	//RF_CS
+		sGpioDir(80,1);
+		sGpioOut(80,1);
+		
+		sGpioMode(81,0);	//RF_SCLK
+		sGpioDir(81,1);
+		sGpioOut(81,0);
+		
+		sGpioMode(83,0);	//RF_MOSI
+		sGpioDir(83,1);
+		sGpioOut(83,0);
+		
+		sGpioMode(82,0);	//RF_MISO
+		sGpioDir(82,0);
+	}
+	
+	public void RFReset(int reset){
+		//sGpioMode(12,0);
+		//sGpioDir(12,1);
+		sGpioOut(12,reset);
+	}
+	
+	public void RFCS(int cs){
+		//sGpioMode(80,0);
+		//sGpioDir(80,1);
+		sGpioOut(80,cs);
+	}
+	
+	public void RFCLK(int clk){
+		//sGpioMode(81,0);
+		//sGpioDir(81,1);
+		sGpioOut(81,clk);
+	}
+	
+	public void RFSet(int sta){
+		//sGpioMode(83,0);
+		//sGpioDir(83,1);
+		sGpioOut(83,sta);
+	}
+	
+	public int RFGet(){
+		//sGpioMode(82,0);
+		//sGpioDir(82,0);
+		return getGpioIn(82);
+	}
+	
 	public boolean isOpen(){
 		return mOpen;
 	}
@@ -113,11 +169,11 @@ public class MtGpio {
 	private native int openDev();
 	public native void closeDev();
 	private native int setGpioMode(int pin, int mode);
-	private native int setGpioDir(int pin, int dir);
+	private native int setGpioDir(int pin, int dir);////????????????
 	private native int setGpioPullEnable(int pin, int enable);
 	private native int setGpioPullSelect(int pin, int select);
-	public native  int setGpioOut(int pin, int out);
-	private native int getGpioIn(int pin);
+	public native  int setGpioOut(int pin, int out);//?????????
+	private native int getGpioIn(int pin); //
 	static {
 		System.loadLibrary("mtgpio");
 	}

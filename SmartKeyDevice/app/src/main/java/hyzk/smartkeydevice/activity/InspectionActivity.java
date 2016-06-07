@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import hyzk.smartkeydevice.R;
 import hyzk.smartkeydevice.utils.Bimp;
@@ -42,6 +43,8 @@ public class InspectionActivity extends Activity {
     private PopupWindow pop = null;
     private LinearLayout ll_popup;
     public static Bitmap bimap ;
+    private Button rbackBtn;
+    private TextView activity_selectimg_sendBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,20 @@ public class InspectionActivity extends Activity {
         Init();
     }
     public void Init() {
+        rbackBtn = (Button)findViewById(R.id.rback);
+        rbackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        activity_selectimg_sendBtn = (TextView)findViewById(R.id.activity_selectimg_send);
+        activity_selectimg_sendBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //done send data to net or store to local.
+            }
+        });
         pop = new PopupWindow(InspectionActivity.this);
         View view = getLayoutInflater().inflate(R.layout.item_popupwindows, null);
         ll_popup = (LinearLayout) view.findViewById(R.id.ll_popup);

@@ -9,7 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/black" >
-
+        <Button
+            android:textSize="14sp"
+            android:textColor="#fff"
+            android:id="@+id/rback"
+            android:text="@string/camera_cancel"
+            android:background="@drawable/plugin_camera_title_btn_back"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
