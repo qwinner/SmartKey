@@ -37,4 +37,12 @@
     <string name="camera_cancel">取消</string>
     <string name="no_photo">相册没有图片</string>
 
+    <!-- 界面按钮 -->
+    <string name="upload">上传</string>
+    <string name="download">下载</string>
+    <string name="warning">报警</string>
+    <string name="history">历史</string>
+
+    <string name="rback">后退</string>
+
 </resources>

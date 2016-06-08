@@ -16,10 +16,12 @@ import hyzk.smartkeydevice.R;
 public class MyGridAdapter extends BaseAdapter {
 	private Context mContext;
 
-	public String[] img_text = { "upload",
-			"download", "baojing", "history", };
-	public int[] imgs = { R.drawable.icon_exit, R.drawable.icon_exit,
-			R.drawable.icon_exit, R.drawable.icon_exit };
+	public int[] img_text = { R.string.upload,
+			R.string.download,
+			R.string.warning,
+			R.string.history};
+	public int[] imgs = { R.drawable.upload, R.drawable.download,
+			R.drawable.warning, R.drawable.history };
 
 	public MyGridAdapter(Context mContext) {
 		super();

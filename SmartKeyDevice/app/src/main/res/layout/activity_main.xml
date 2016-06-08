@@ -47,13 +47,6 @@
             android:layout_marginTop="2dp"
             android:background="@android:color/transparent"
             android:orientation="vertical">
-            <!--<hyzk.smartkeydevice.widget.RippleView-->
-                <!--android:id="@+id/rippleView"-->
-                <!--android:layout_width="1dp"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:layout_gravity="center">-->
-
-            <!--</hyzk.smartkeydevice.widget.RippleView>-->
             <at.markushi.ui.CircleButton
                 android:layout_width="100dp"
                 android:layout_height="100dp"

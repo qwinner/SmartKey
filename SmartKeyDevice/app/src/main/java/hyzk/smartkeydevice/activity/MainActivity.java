@@ -11,6 +11,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ import hyzk.smartkeydevice.utils.ToastUtil;
 import hyzk.smartkeydevice.widget.RadarScanView;
 import hyzk.smartkeydevice.widget.RippleView;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener,AdapterView.OnItemClickListener {
 
     private ResideMenu resideMenu;
     private ResideMenuItem itemHome;
@@ -34,7 +35,6 @@ public class MainActivity extends Activity implements View.OnClickListener {
     private ResideMenuItem itemExit;
 
     private RadarScanView radar;
-//    private RippleView rippleView;
     private boolean radarVisible = false;
     private Button txViewBtn;
 
@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         InitRadar();
         gridview=(MyGridView) findViewById(R.id.gridview);
         gridview.setAdapter(new MyGridAdapter(this));
-
+        gridview.setOnItemClickListener(this);
     }
 
     private void setUpMenu() {
@@ -96,41 +96,17 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 }
             }
         });
-//        rippleView = (RippleView) findViewById(R.id.rippleView);
-//        rippleView.setMode(RippleView.MODE_OUT);
-//        rippleView.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View view){
-//                if(radarVisible) {
-//                    StopRadar();
-//                }else{
-//                    StartRadar();
-//                }
-//            }
-//        });
 
-        int fontColor = 0xff404040;
-        int shadowColor = 0xFFEBCD;
-        int TEXT_SIZE = 15;
-//        rippleView.setText(this.getResources().getString(R.string.bt_start_radar));
-//        rippleView.setTextColor(fontColor);
-//        rippleView.setTextSize(TypedValue.COMPLEX_UNIT_SP, TEXT_SIZE);
-//        rippleView.setShadowLayer(1, 1, 1, shadowColor);
-//        rippleView.setGravity(Gravity.CENTER);
     }
     private void StartRadar(){
         radar.Show(true);
         txViewBtn.setText(this.getResources().getString(R.string.bt_stop_radar));
-//        rippleView.startRippleAnimation();
-//        rippleView.setText(this.getResources().getString(R.string.bt_stop_radar));
         radarVisible = true;
     }
 
     private void StopRadar(){
         radar.Show(false);
         txViewBtn.setText(this.getResources().getString(R.string.bt_start_radar));
-//        rippleView.stopRippleAnimation();
-//        rippleView.setText(this.getResources().getString(R.string.bt_start_radar));
         radarVisible = false;
     }
     @Override
@@ -164,6 +140,23 @@ public class MainActivity extends Activity implements View.OnClickListener {
             return true;
         }else {}
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        switch (position) {
+            case 0:
+                startActivity(new Intent(MainActivity.this, UploadActivity.class));
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
     }
 
 }
