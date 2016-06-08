@@ -104,7 +104,6 @@ public class RadarScanView extends View
         }
 
         initPaint();
-        //得到当前屏幕的像素宽�?
 
         defaultWidth = dip2px(context, DEFAULT_WIDTH);
         defaultHeight = dip2px(context, DEFAULT_HEIGHT);
@@ -117,9 +116,9 @@ public class RadarScanView extends View
     {
         mPaintCircle = new Paint();
         mPaintCircle.setColor(circleColor);
-        mPaintCircle.setAntiAlias(true);//抗锯齿
-        mPaintCircle.setStyle(Paint.Style.STROKE);//设置实心
-        mPaintCircle.setStrokeWidth(2);//画笔宽度
+        mPaintCircle.setAntiAlias(true);
+        mPaintCircle.setStyle(Paint.Style.STROKE);
+        mPaintCircle.setStrokeWidth(2);
 
         mPaintRadar = new Paint();
         mPaintRadar.setColor(radarColor);
@@ -170,7 +169,6 @@ public class RadarScanView extends View
     {
         super.onDraw(canvas);
         if(show) {
-            //分别�?制四个圆
             canvas.drawCircle(centerX, centerY, radarRadius / 7, mPaintCircle);
             canvas.drawCircle(centerX, centerY, radarRadius / 4, mPaintCircle);
             canvas.drawCircle(centerX, centerY, radarRadius / 3, mPaintCircle);

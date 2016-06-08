@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/app/libs" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/libs/android-core-3.1.1-SNAPSHOT.jar" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/android-core-3.1.1-SNAPSHOT.jar" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/armeabi" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/baidumapapi_v3_1_1.jar" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/libs/baidumapapi_v3_1_1.jar" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/libs/core-3.1.1-SNAPSHOT.jar" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/core-3.1.1-SNAPSHOT.jar" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/fluent-hc.jar" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/libs/fluent-hc.jar" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/libs/httpmime-4.3.jar" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/httpmime-4.3.jar" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/libBaiduMapSDK_v3_1_1.so" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/libconversions.so" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/libfgtitalg.so" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/libfpcore.so" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/liblocSDK4d.so" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/libmtgpio.so" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/libserial_port.so" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/libs/locSDK_4.2.jar" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/libs/locSDK_4.2.jar" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/android_serialport_api/AsyncFingerprint.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/hyzk/smartkeydevice/activity/AlbumActivity.java" charset="UTF-8" />
@@ -53,6 +68,7 @@
     <file url="file://$PROJECT_DIR$/app/src/main/java/hyzk/smartkeydevice/widget/RippleView.java" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/src/main/java/hyzk/smartkeydevice/zoom" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/jniLibs" charset="windows-1251" />
+    <file url="file://$PROJECT_DIR$/app/src/main/jniLibs" charset="windows-1251" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/anim/activity_translate_in.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/anim/activity_translate_out.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/anim/popup_enter.xml" charset="UTF-8" />
@@ -99,6 +115,6 @@
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/plugin_camera_select_folder.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/plugin_camera_select_imageview.xml" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/plugin_camera_show_all_photo.xml" charset="UTF-8" />
-    <file url="PROJECT" charset="windows-1251" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

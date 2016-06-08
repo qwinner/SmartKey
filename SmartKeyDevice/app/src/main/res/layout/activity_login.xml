@@ -2,33 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/login"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <ScrollView
-        android:id="@+id/login_form"
-        android:background="@drawable/login"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <!--<ScrollView-->
+        <!--android:id="@+id/login_form"-->
+        <!--android:background="@drawable/login"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
         <LinearLayout
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="200dp"
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="40dp"-->
-                <!--android:orientation="vertical">-->
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:textSize="24dp"-->
-                    <!--android:textColor="@color/contents_text"-->
-                    <!--android:layout_gravity="center"-->
-                    <!--android:text="登录"/>-->
-            <!--</LinearLayout>-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -88,8 +77,5 @@
                 android:text="@string/finger_login"/>
 
         </LinearLayout>
-
-
-    </ScrollView>
 
 </RelativeLayout>

@@ -120,7 +120,6 @@ public class LoginActivity extends Activity implements OnItemClickListener {
     }
     public void exitApplication(){
         if((System.currentTimeMillis()-exitTime) > 2000){
-            Toast.makeText(getApplicationContext(), "µã»÷ÍË³ö°´Å¥×¢ÏúµÇÂ¼", Toast.LENGTH_SHORT).show();
             exitTime = System.currentTimeMillis();
         }
         else{
@@ -164,34 +163,34 @@ public class LoginActivity extends Activity implements OnItemClickListener {
         imm.hideSoftInputFromWindow(mEmailView.getWindowToken(),0);
         imm.hideSoftInputFromWindow(mPasswordView.getWindowToken(), 0);
 
-        ActivityList.getInstance().setMainContext(this);
-        ActivityList.getInstance().LoadConfig();
-        ActivityList.getInstance().CheckDate="Check";//ExtApi.getDataForID();
-        ActivityList.getInstance().DeviceSN= ExtApi.getDeviceID(this);
-
-        mEmailView.setText(ActivityList.getInstance().DefaultUser);
-        ExtApi.CreateDir(ActivityList.getInstance().DirWork);
-        ExtApi.CreateDir(ActivityList.getInstance().TmpWork);
-        ExtApi.CreateDir(ActivityList.getInstance().CacheWork);
-        ExtApi.CreateDir(ActivityList.getInstance().DataWork);
+//        ActivityList.getInstance().setMainContext(this);
+//        ActivityList.getInstance().LoadConfig();
+//        ActivityList.getInstance().CheckDate="Check";//ExtApi.getDataForID();
+//        ActivityList.getInstance().DeviceSN= ExtApi.getDeviceID(this);
+//
+//        mEmailView.setText(ActivityList.getInstance().DefaultUser);
+//        ExtApi.CreateDir(ActivityList.getInstance().DirWork);
+//        ExtApi.CreateDir(ActivityList.getInstance().TmpWork);
+//        ExtApi.CreateDir(ActivityList.getInstance().CacheWork);
+//        ExtApi.CreateDir(ActivityList.getInstance().DataWork);
 
         //UpdateApp.getInstance().setAppContext(this);
-        MtGpio.getInstance().BCPowerSwitch(false);
+//        MtGpio.getInstance().BCPowerSwitch(false);
+//
+//        final IntentFilter filter = new IntentFilter();
+//        filter.addAction(Intent.ACTION_SCREEN_OFF);
+//        filter.addAction(Intent.ACTION_SCREEN_ON);
+//        registerReceiver(mBatInfoReceiver, filter);
+//
+//        SetScreenOffTimeOut();
+//        GlobalData.LoadAdminList();
+//        GlobalData.LoadHistoryList();
 
-        final IntentFilter filter = new IntentFilter();
-        filter.addAction(Intent.ACTION_SCREEN_OFF);
-        filter.addAction(Intent.ACTION_SCREEN_ON);
-        registerReceiver(mBatInfoReceiver, filter);
-
-        SetScreenOffTimeOut();
-        GlobalData.LoadAdminList();
-        GlobalData.LoadHistoryList();
-
-        for(int n=0;n<GlobalData.adminList.size();n++){
-            if(ActivityList.getInstance().DefaultUser.equals(GlobalData.adminList.get(n).username)){
-                GlobalData.adminItem=GlobalData.adminList.get(n);
-            }
-        }
+//        for(int n=0;n<GlobalData.adminList.size();n++){
+//            if(ActivityList.getInstance().DefaultUser.equals(GlobalData.adminList.get(n).username)){
+//                GlobalData.adminItem=GlobalData.adminList.get(n);
+//            }
+//        }
         InitRunnable();
     }
 
@@ -212,7 +211,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
 //        if(o == mAlertViewExt && position != AlertView.CANCELPOSITION){
 //            String name = etName.getText().toString();
 //            if(name.isEmpty()){
-//                Toast.makeText(this, "å•¥éƒ½æ²¡å¡«å‘?, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(this, "11", Toast.LENGTH_SHORT).show();
 //            }
 //            else{
 //                Toast.makeText(this, "hello,"+name, Toast.LENGTH_SHORT).show();
@@ -246,8 +245,8 @@ public class LoginActivity extends Activity implements OnItemClickListener {
     private void CheckPwLogin(){
         String username=mEmailView.getText().toString();
         String password=mPasswordView.getText().toString();
-        ActivityList.getInstance().DefaultUser=username;
-        ActivityList.getInstance().SaveConfigByVal("DefaultUser",username);
+//        ActivityList.getInstance().DefaultUser=username;
+//        ActivityList.getInstance().SaveConfigByVal("DefaultUser",username);
         if(username.equals("admin")){
             if(password.equals("1010")){
                 bIsCancel=true;
