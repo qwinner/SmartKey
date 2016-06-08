@@ -365,17 +365,17 @@ public class LoginActivity extends Activity implements OnItemClickListener {
                 //vFingerprint.PS_Search(1, 1, 256);
                 tvFpStatus.setText(getString(R.string.txt_fg_identify));
 
-                if(GlobalData.adminItem.getTempStr1().length()>200){
-                    iMatchId=1;
-                    vFingerprint.PS_DownChar(GlobalData.adminItem.getTemplate1());
-                }else if(GlobalData.adminItem.getTempStr2().length()>200){
-                    iMatchId=2;
-                    vFingerprint.PS_DownChar(GlobalData.adminItem.getTemplate2());
-                }else{
+//                if(GlobalData.adminItem.getTempStr1().length()>200){
+//                    iMatchId=1;
+//                    vFingerprint.PS_DownChar(GlobalData.adminItem.getTemplate1());
+//                }else if(GlobalData.adminItem.getTempStr2().length()>200){
+//                    iMatchId=2;
+//                    vFingerprint.PS_DownChar(GlobalData.adminItem.getTemplate2());
+//                }else{
                     tvFpStatus.setText(getString(R.string.txt_fg_failed));
                     SerialPortManager.getInstance().closeSerialPort();
                     bfpWork=false;
-                }
+//                }
             }
 
             @Override
@@ -411,11 +411,11 @@ public class LoginActivity extends Activity implements OnItemClickListener {
             @Override
             public void onMatchFail() {
                 if(iMatchId==1){
-                    if(GlobalData.adminItem.getTempStr2().length()>200){
-                        iMatchId=2;
-                        vFingerprint.PS_DownChar(GlobalData.adminItem.getTemplate2());
-                        return;
-                    }
+//                    if(GlobalData.adminItem.getTempStr2().length()>200){
+//                        iMatchId=2;
+//                        vFingerprint.PS_DownChar(GlobalData.adminItem.getTemplate2());
+//                        return;
+//                    }
                 }
                 tvFpStatus.setText(getString(R.string.txt_fg_failed));
                 SerialPortManager.getInstance().closeSerialPort();
