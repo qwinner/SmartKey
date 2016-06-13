@@ -84,7 +84,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
         setContentView(R.layout.activity_login);
         this.getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED, FLAG_HOMEKEY_DISPATCHED);
         ActivityList.getInstance().addActivity(this);
-
+        ActivityList.getInstance().setMainContext(this);
         InitView();
         //ShowFringerView();
     }
@@ -229,7 +229,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
                     intent.addCategory(Intent.CATEGORY_HOME);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                    finish();
+//                    finish();
                     overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                     ActivityList.getInstance().removeActivity(LoginActivity.this);
                 }catch (InterruptedException error){
@@ -412,6 +412,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
                 SerialPortManager.getInstance().closeSerialPort();
                 bfpWork=false;
                 LoginSuccess();
+                MtGpio.getInstance().RFPowerSwitch(false);
             }
 
             @Override

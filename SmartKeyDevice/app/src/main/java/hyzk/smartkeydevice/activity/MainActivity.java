@@ -45,7 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActivityList.getInstance().addActivity(this);
-        ActivityList.getInstance().setMainContext(this);
+
         setUpMenu();
         InitRadar();
         gridview=(MyGridView) findViewById(R.id.gridview);
@@ -128,14 +128,14 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
     private final Handler rfidHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            switch(msg.what){
-                case RfidReader.STATE_ADDHIGH:
-                {
-                    byte[] sn=(byte[])msg.obj;
-                }
-                break;
-                case RfidReader.STATE_ADDITEM:
-                {
+//            switch(msg.what){
+//                case RfidReader.STATE_ADDHIGH:
+//                {
+//                    byte[] sn=(byte[])msg.obj;
+//                }
+//                break;
+//                case RfidReader.STATE_ADDITEM:
+//                {
                     StopRadar();
                     int sv=msg.arg2;
                     byte[] sn=(byte[])msg.obj;
@@ -143,9 +143,9 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
                             InspectionActivity.class);
                     intent.putExtra("SN", new String(sn));
                     startActivity(intent);
-                }
-                break;
-            }
+//                }
+//                break;
+//            }
         }
     };
 
