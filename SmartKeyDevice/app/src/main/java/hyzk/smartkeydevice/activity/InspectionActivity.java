@@ -32,6 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import hyzk.smartkeydevice.R;
+import hyzk.smartkeydevice.app.ActivityList;
 import hyzk.smartkeydevice.utils.Bimp;
 import hyzk.smartkeydevice.utils.ImageItem;
 
@@ -46,14 +47,21 @@ public class InspectionActivity extends Activity {
     private Button rbackBtn;
     private TextView activity_selectimg_sendBtn;
 
+    private TextView snTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         parentView = getLayoutInflater().inflate(R.layout.activity_selectimg, null);
+        ActivityList.getInstance().addActivity(this);
+
         setContentView(parentView);
         Init();
     }
     public void Init() {
+        snTextView = (TextView)findViewById(R.id.snT);
+        Intent intent = getIntent();
+        snTextView.append(intent.getStringExtra("SN"));
         rbackBtn = (Button)findViewById(R.id.rback);
         rbackBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +117,7 @@ public class InspectionActivity extends Activity {
                 overridePendingTransition(R.anim.activity_translate_in, R.anim.activity_translate_out);
                 pop.dismiss();
                 ll_popup.clearAnimation();
+
             }
         });
         bt3.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +146,7 @@ public class InspectionActivity extends Activity {
                     intent.putExtra("position", "1");
                     intent.putExtra("ID", arg2);
                     startActivity(intent);
+
                 }
             }
         });

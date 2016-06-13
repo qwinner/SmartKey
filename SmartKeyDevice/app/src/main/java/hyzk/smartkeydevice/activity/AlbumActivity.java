@@ -23,6 +23,7 @@ import android.widget.ToggleButton;
 
 import hyzk.smartkeydevice.R;
 import hyzk.smartkeydevice.adapter.AlbumGridViewAdapter;
+import hyzk.smartkeydevice.app.ActivityList;
 import hyzk.smartkeydevice.utils.AlbumHelper;
 import hyzk.smartkeydevice.utils.Bimp;
 import hyzk.smartkeydevice.utils.ImageBucket;
@@ -48,6 +49,7 @@ public class AlbumActivity extends Activity {
 	public static Bitmap bitmap;
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		ActivityList.getInstance().addActivity(this);
 		setContentView(R.layout.plugin_camera_album);
 		mContext = this;
 		IntentFilter filter = new IntentFilter("data.broadcast.action");
@@ -86,6 +88,7 @@ public class AlbumActivity extends Activity {
 			intent.setClass(mContext, InspectionActivity.class);
 			startActivity(intent);
 			finish();
+			ActivityList.getInstance().removeActivity(AlbumActivity.this);
 		}
 
 	}
@@ -103,6 +106,7 @@ public class AlbumActivity extends Activity {
 			intent.setClass(mContext, InspectionActivity.class);
 			startActivity(intent);
             finish();
+			ActivityList.getInstance().removeActivity(AlbumActivity.this);
 		}
 	}
 
@@ -204,6 +208,7 @@ public class AlbumActivity extends Activity {
 			intent.setClass(AlbumActivity.this, InspectionActivity.class);
 			startActivity(intent);
             finish();
+			ActivityList.getInstance().removeActivity(AlbumActivity.this);
 		}
 		return false;
 

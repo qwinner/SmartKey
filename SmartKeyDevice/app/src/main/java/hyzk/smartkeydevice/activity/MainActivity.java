@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.fpi.MtGpio;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,6 +37,8 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
 
     private MyGridView gridview;
 
+    private Button ExitBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,18 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
         gridview=(MyGridView) findViewById(R.id.gridview);
         gridview.setAdapter(new MyGridAdapter(this));
         gridview.setOnItemClickListener(this);
+        MtGpio.getInstance().RFPowerSwitch(true);
+        RfidReader.getInstance().openSerialPort();
+        RfidReader.getInstance().SetMessageHandler(rfidHandler);
+
+        ExitBtn= (Button)findViewById(R.id.title_bar_right_menu);
+        ExitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActivityList.getInstance().Relogon();
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
     }
 
     private void setUpMenu() {
@@ -97,6 +113,8 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
         radar.Show(true);
         txViewBtn.setText(this.getResources().getString(R.string.bt_stop_radar));
         radarVisible = true;
+
+        RfidReader.getInstance().SendCmd(0x03);
     }
 
     private void StopRadar(){
@@ -104,6 +122,31 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
         txViewBtn.setText(this.getResources().getString(R.string.bt_start_radar));
         radarVisible = false;
     }
+
+    private final Handler rfidHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch(msg.what){
+                case RfidReader.STATE_ADDHIGH:
+                {
+                    byte[] sn=(byte[])msg.obj;
+                }
+                break;
+                case RfidReader.STATE_ADDITEM:
+                {
+                    StopRadar();
+                    int sv=msg.arg2;
+                    byte[] sn=(byte[])msg.obj;
+                    Intent intent = new Intent(MainActivity.this,
+                            InspectionActivity.class);
+                    intent.putExtra("SN", new String(sn));
+                    startActivity(intent);
+                }
+                break;
+            }
+        }
+    };
+
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         return resideMenu.dispatchTouchEvent(ev);

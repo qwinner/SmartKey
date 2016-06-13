@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import hyzk.smartkeydevice.R;
+import hyzk.smartkeydevice.app.ActivityList;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -37,6 +38,7 @@ public class HistoryActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+        ActivityList.getInstance().addActivity(this);
         InitView();
     }
 
@@ -61,6 +63,7 @@ public class HistoryActivity extends Activity {
             public void onClick(View v) {
                 finish();
                 overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+                ActivityList.getInstance().removeActivity(HistoryActivity.this);
             }
         });
 
@@ -123,6 +126,7 @@ public class HistoryActivity extends Activity {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
             finish();
             overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+            ActivityList.getInstance().removeActivity(HistoryActivity.this);
             return true;
         }else {}
         return super.onKeyDown(keyCode, event);

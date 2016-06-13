@@ -21,6 +21,7 @@ import android.widget.ToggleButton;
 
 import hyzk.smartkeydevice.R;
 import hyzk.smartkeydevice.adapter.AlbumGridViewAdapter;
+import hyzk.smartkeydevice.app.ActivityList;
 import hyzk.smartkeydevice.utils.Bimp;
 import hyzk.smartkeydevice.utils.ImageItem;
 
@@ -47,6 +48,7 @@ public class ShowAllPhoto extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.plugin_camera_show_all_photo);
+		ActivityList.getInstance().addActivity(this);
 
 		mContext = this;
 		back =      (Button) findViewById(R.id.showallphoto_back);
@@ -84,6 +86,7 @@ public class ShowAllPhoto extends Activity {
 				intent.setClass(ShowAllPhoto.this, GalleryActivity.class);
 				startActivity(intent);
 				finish();
+				ActivityList.getInstance().removeActivity(ShowAllPhoto.this);
 			}
 		}
 
@@ -100,6 +103,7 @@ public class ShowAllPhoto extends Activity {
 			intent.setClass(ShowAllPhoto.this, ImageFileActivity.class);
 			startActivity(intent);
             finish();
+			ActivityList.getInstance().removeActivity(ShowAllPhoto.this);
 		}
 
 	}
@@ -110,6 +114,7 @@ public class ShowAllPhoto extends Activity {
 			intent.setClass(mContext, ImageFileActivity.class);
 			startActivity(intent);
             finish();
+			ActivityList.getInstance().removeActivity(ShowAllPhoto.this);
 		}
 	}
 
@@ -161,7 +166,7 @@ public class ShowAllPhoto extends Activity {
 				intent.setClass(mContext, InspectionActivity.class);
 				startActivity(intent);
 				finish();
-
+				ActivityList.getInstance().removeActivity(ShowAllPhoto.this);
 			}
 		});
 
@@ -192,6 +197,7 @@ public class ShowAllPhoto extends Activity {
 			this.finish();
 			intent.setClass(ShowAllPhoto.this, ImageFileActivity.class);
 			startActivity(intent);
+			ActivityList.getInstance().removeActivity(ShowAllPhoto.this);
 		}
 
 		return false;

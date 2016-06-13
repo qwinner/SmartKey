@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import hyzk.smartkeydevice.app.ActivityList;
 import hyzk.smartkeydevice.utils.Bimp;
 import hyzk.smartkeydevice.zoom.PhotoView;
 import hyzk.smartkeydevice.zoom.ViewPagerFixed;
@@ -51,6 +52,8 @@ public class GalleryActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.plugin_camera_gallery);// 切屏到主界面
+		ActivityList.getInstance().addActivity(this);
+
 		mContext = this;
 		positionTextView = (TextView)findViewById(R.id.textview);
 		back_bt = (Button) findViewById(R.id.gallery_back);
@@ -107,6 +110,7 @@ public class GalleryActivity extends Activity {
 		public void onClick(View v) {
 			intent.setClass(GalleryActivity.this, ImageFileActivity.class);
 			startActivity(intent);
+
 		}
 	}
 	//删除当前图片
@@ -119,6 +123,7 @@ public class GalleryActivity extends Activity {
 				Intent intent = new Intent("data.broadcast.action");
                 sendBroadcast(intent);
 				finish();
+				ActivityList.getInstance().removeActivity(GalleryActivity.this);
 			} else {
 				Bimp.tempSelectBitmap.remove(location);
 				Bimp.max--;
@@ -136,6 +141,7 @@ public class GalleryActivity extends Activity {
 			finish();
 			intent.setClass(mContext,InspectionActivity.class);
 			startActivity(intent);
+			ActivityList.getInstance().removeActivity(GalleryActivity.this);
 		}
 
 	}
@@ -162,14 +168,17 @@ public class GalleryActivity extends Activity {
 				intent.setClass(GalleryActivity.this, InspectionActivity.class);//AlbumActivity
 				startActivity(intent);
 				this.finish();
+				ActivityList.getInstance().removeActivity(GalleryActivity.this);
 			}else if(position==2){
 				intent.setClass(GalleryActivity.this, ShowAllPhoto.class);
 				startActivity(intent);
 				this.finish();
+				ActivityList.getInstance().removeActivity(GalleryActivity.this);
 			}else if(position==3){
 				intent.setClass(GalleryActivity.this, AlbumActivity.class);
 				startActivity(intent);
 				this.finish();
+				ActivityList.getInstance().removeActivity(GalleryActivity.this);
 			}
 		}
 		return true;

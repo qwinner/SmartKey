@@ -81,6 +81,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         this.getWindow().setFlags(FLAG_HOMEKEY_DISPATCHED, FLAG_HOMEKEY_DISPATCHED);
+        ActivityList.getInstance().addActivity(this);
 
         InitView();
         //ShowFringerView();
@@ -124,6 +125,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
         }
         else{
             finish();
+            ActivityList.getInstance().removeActivity(LoginActivity.this);
             System.exit(0);
         }
     }
@@ -235,6 +237,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
                     startActivity(intent);
                     finish();
                     overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+                    ActivityList.getInstance().removeActivity(LoginActivity.this);
                 }catch (InterruptedException error){
                     Log.e("splash",error.toString());
                 }
@@ -261,6 +264,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
                 SerialPortManager.getInstance().closeSerialPort();
                 MtGpio.getInstance().RFPowerSwitch(false);
                 finish();
+                ActivityList.getInstance().removeActivity(LoginActivity.this);
             }else{
                 ToastUtil.showToastTop(LoginActivity.this, this.getResources().getString(R.string.login_failed));
                 cpBtn.setProgress(0);

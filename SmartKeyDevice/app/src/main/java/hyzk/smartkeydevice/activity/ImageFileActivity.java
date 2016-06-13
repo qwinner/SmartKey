@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import hyzk.smartkeydevice.R;
 import hyzk.smartkeydevice.adapter.FolderAdapter;
+import hyzk.smartkeydevice.app.ActivityList;
 import hyzk.smartkeydevice.utils.Bimp;
 
 //相册修改，从哪里过来取消的时候回去
@@ -26,6 +27,7 @@ public class ImageFileActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.plugin_camera_image_file);
+		ActivityList.getInstance().addActivity(this);
 
 		mContext = this;
 		bt_cancel = (Button) findViewById(R.id.cancel);
@@ -54,6 +56,7 @@ public class ImageFileActivity extends Activity {
 //			intent.setClass(mContext, InspectionActivity.class);
 //			startActivity(intent);
 			finish();
+			ActivityList.getInstance().removeActivity(ImageFileActivity.this);
 		}
 		
 		return true;
