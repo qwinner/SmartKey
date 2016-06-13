@@ -1,21 +1,14 @@
 package hyzk.smartkeydevice.activity;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.fpi.MtGpio;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
@@ -163,6 +156,8 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
             case 1:
                 break;
             case 2:
+                startActivity(new Intent(MainActivity.this, WarningActivity.class));
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
             case 3:
                 startActivity(new Intent(MainActivity.this, HistoryActivity.class));

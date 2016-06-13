@@ -109,6 +109,10 @@
             android:name=".activity.HistoryActivity"
             android:theme="@style/NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.WarningActivity"
+            android:theme="@style/NoActionBar">
+        </activity>
     </application>
 
 </manifest>

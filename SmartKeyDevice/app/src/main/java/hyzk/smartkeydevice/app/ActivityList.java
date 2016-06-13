@@ -124,8 +124,6 @@ public class ActivityList {
 
 		WebAddr=sp.getString("WebAddr","http://www.coiot.cn/");		
 		UpdateUrl=sp.getString("UpdateUrl","http://www.coiot.cn/apk/update.xml");
-		//WebService=sp.getString("WebService","http://www.coiot.cn/FingermapWebApp/FingermapService.asmx");
-		//WebHandler=sp.getString("WebHandler","http://www.coiot.cn/FingermapWebApp/FingermapHandler.FP");
 		WebService=WebAddr+"FingermapWebApp/FingermapService.asmx";
 		WebHandler=WebAddr+"FingermapWebApp/FingermapHandler.FP";
 
