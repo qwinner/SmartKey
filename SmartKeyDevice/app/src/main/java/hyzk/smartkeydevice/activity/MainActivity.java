@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.fpi.MtGpio;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.TypedValue;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
+import android_serialport_api.RfidReader;
 import hyzk.smartkeydevice.R;
 import hyzk.smartkeydevice.adapter.MyGridAdapter;
 import hyzk.smartkeydevice.adapter.MyGridView;
@@ -131,6 +133,15 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        RfidReader.getInstance().closeSerialPort();
+        MtGpio.getInstance().RFPowerSwitch(false);
+        RfidReader.getInstance().SetMessageHandler(null);
+    }
+
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
             return true;
@@ -143,6 +154,7 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
     }
 
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+        StopRadar();
         switch (position) {
             case 0:
                 startActivity(new Intent(MainActivity.this, UploadActivity.class));
@@ -153,6 +165,8 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
             case 2:
                 break;
             case 3:
+                startActivity(new Intent(MainActivity.this, HistoryActivity.class));
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
             default:
                 break;

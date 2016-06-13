@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="statusD">
+        <item>全部</item>
+        <item>正常</item>
+        <item>报警</item>
+        <item>异常</item>
+        <item>其他</item>
+    </string-array>
+
+    <string-array name="posD">
+        <item>全部</item>
+        <item>A组</item>
+        <item>B组</item>
+        <item>C组</item>
+        <item>其他</item>
+    </string-array>
+
+
+</resources>
