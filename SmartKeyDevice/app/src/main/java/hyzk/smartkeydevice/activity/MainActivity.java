@@ -154,6 +154,8 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
                 overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
             case 1:
+                startActivity(new Intent(MainActivity.this, DownloadActivity.class));
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
                 break;
             case 2:
                 startActivity(new Intent(MainActivity.this, WarningActivity.class));
