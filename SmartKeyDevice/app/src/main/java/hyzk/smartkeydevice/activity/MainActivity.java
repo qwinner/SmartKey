@@ -3,6 +3,7 @@ package hyzk.smartkeydevice.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.fpi.MtGpio;
+import android.location.SettingInjectorService;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -44,6 +45,7 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ActivityList.getInstance().addActivity(this);
+        ActivityList.getInstance().setMainContext(this);
         setUpMenu();
         InitRadar();
         gridview=(MyGridView) findViewById(R.id.gridview);
@@ -155,15 +157,14 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
     @Override
     public void onClick(View view) {
 
-//        if (view == itemHome){
-//            changeFragment(new HomeFragment());
-//        }else if (view == itemProfile){
-//            changeFragment(new ProfileFragment());
-//        }else if (view == itemCalendar){
-//            changeFragment(new CalendarFragment());
-//        }else if (view == itemSettings){
-//            changeFragment(new SettingsFragment());
-//        }
+        if (view == itemHome){
+
+        }else if (view == itemSettings){
+            startActivity(new Intent(MainActivity.this, SettingActivity.class));
+        }else if (view == itemExit){
+            ActivityList.getInstance().Relogon();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }else {}
 
         resideMenu.closeMenu();
     }

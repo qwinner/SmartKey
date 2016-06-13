@@ -88,18 +88,18 @@ public class WarningActivity extends Activity {
         mPtrFrame.setPullToRefresh(true);
         // default is true
         mPtrFrame.setKeepHeaderWhenRefresh(true);
-        mPtrFrame.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mPtrFrame.autoRefresh();
-            }
-        }, 1000);
+//        mPtrFrame.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                mPtrFrame.autoRefresh();
+//            }
+//        }, 1000);
     }
 
     class SpinnerXMLSelectedListener1 implements AdapterView.OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
-            Toast.makeText(WarningActivity.this, "状态："+adapter1.getItem(arg2), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(WarningActivity.this, "状态："+adapter1.getItem(arg2), Toast.LENGTH_SHORT).show();
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {
@@ -110,7 +110,7 @@ public class WarningActivity extends Activity {
     class SpinnerXMLSelectedListener2 implements AdapterView.OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
-            Toast.makeText(WarningActivity.this, "状态："+adapter2.getItem(arg2), Toast.LENGTH_SHORT).show();
+//            Toast.makeText(WarningActivity.this, "状态："+adapter2.getItem(arg2), Toast.LENGTH_SHORT).show();
         }
         public void onNothingSelected(AdapterView<?> arg0) {
 

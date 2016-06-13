@@ -101,6 +101,12 @@ public class ActivityList {
 		edit.putString(name,val);
 		edit.commit();
     }
+
+	public String GetValFromConfig(String name){
+		SharedPreferences sp;
+		sp = PreferenceManager.getDefaultSharedPreferences(pcontext);
+		return sp.getString(name,"10101010");
+	}
     
 	public void SaveConfig(){
     	SharedPreferences sp;

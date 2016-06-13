@@ -61,7 +61,11 @@ public class InspectionActivity extends Activity {
     public void Init() {
         snTextView = (TextView)findViewById(R.id.snT);
         Intent intent = getIntent();
-        snTextView.append(intent.getStringExtra("SN"));
+        String sn = intent.getStringExtra("SN");
+        if(sn != null){
+            snTextView.append(getString(R.string.deviceSn) + sn);
+        }
+
         rbackBtn = (Button)findViewById(R.id.rback);
         rbackBtn.setOnClickListener(new View.OnClickListener() {
             @Override

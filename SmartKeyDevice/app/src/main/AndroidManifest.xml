@@ -117,6 +117,10 @@
             android:name=".activity.DownloadActivity"
             android:theme="@style/NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.SettingActivity"
+            android:theme="@style/NoActionBar">
+        </activity>
     </application>
 
 </manifest>

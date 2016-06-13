@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
+import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -36,6 +37,7 @@ import android.widget.Toast;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -196,15 +198,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
         InitRunnable();
     }
 
-    private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(final Context context, final Intent intent) {
-            final String action = intent.getAction();
-            if(Intent.ACTION_SCREEN_OFF.equals(action)){
-                ActivityList.getInstance().Relogon();
-            }
-        }
-    };
+
 
     @Override
     public void onItemClick(Object o,int position) {
@@ -368,6 +362,14 @@ public class LoginActivity extends Activity implements OnItemClickListener {
             public void onGenCharExSuccess(int bufferId) {
                 //vFingerprint.PS_Search(1, 1, 256);
                 tvFpStatus.setText(getString(R.string.txt_fg_identify));
+                String finger1 = ActivityList.getInstance().GetValFromConfig("fingerSN");
+                if(finger1.length() > 200){
+                    vFingerprint.PS_DownChar(android.util.Base64.decode(finger1, Base64.DEFAULT));
+                }else{
+                    tvFpStatus.setText(getString(R.string.txt_fg_failed));
+                    SerialPortManager.getInstance().closeSerialPort();
+                    bfpWork=false;
+               }
 
 //                if(GlobalData.adminItem.getTempStr1().length()>200){
 //                    iMatchId=1;
@@ -376,9 +378,9 @@ public class LoginActivity extends Activity implements OnItemClickListener {
 //                    iMatchId=2;
 //                    vFingerprint.PS_DownChar(GlobalData.adminItem.getTemplate2());
 //                }else{
-                    tvFpStatus.setText(getString(R.string.txt_fg_failed));
-                    SerialPortManager.getInstance().closeSerialPort();
-                    bfpWork=false;
+//                    tvFpStatus.setText(getString(R.string.txt_fg_failed));
+//                    SerialPortManager.getInstance().closeSerialPort();
+//                    bfpWork=false;
 //                }
             }
 
@@ -409,7 +411,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
                 tvFpStatus.setText(getString(R.string.txt_fg_ok));
                 SerialPortManager.getInstance().closeSerialPort();
                 bfpWork=false;
-                CheckFpLogin();
+                LoginSuccess();
             }
 
             @Override
@@ -441,13 +443,9 @@ public class LoginActivity extends Activity implements OnItemClickListener {
     }
 
     private void FPProcess(){
-
         if(!bfpWork){
-            //logonUser=editText1.getText().toString();
             new Thread(runnableGetAdmin).start();
-
             vFingerprint = SerialPortManager.getInstance().getNewAsyncFingerprint();
-
             FPInit();
             try {
                 Thread.currentThread();
