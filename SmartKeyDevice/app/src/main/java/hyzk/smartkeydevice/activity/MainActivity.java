@@ -40,7 +40,7 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
     private Button txViewBtn;
 
     private MyGridView gridview;
-
+    private boolean bread=true;
     private Button ExitBtn;
     private String deviceSn = null;
 
@@ -123,14 +123,17 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
         radar.Show(true);
         txViewBtn.setText(this.getResources().getString(R.string.bt_stop_radar));
         radarVisible = true;
+        RfidReader.getInstance().SendCmd(0x03);
+        bread=true;
         TimerStart();
-        //RfidReader.getInstance().SendCmd(0x02);
     }
 
     private void StopRadar(){
         radar.Show(false);
         txViewBtn.setText(this.getResources().getString(R.string.bt_start_radar));
         radarVisible = false;
+        bread = false;
+        TimerStop();
     }
 
     public void TimerStart() {
@@ -173,14 +176,16 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
     private final Handler rfidHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-        StopRadar();
-        int sv=msg.arg2;
-        byte[] sn=(byte[])msg.obj;
-        Intent intent = new Intent(MainActivity.this,
-                InspectionActivity.class);
-        deviceSn = new String(sn);
-        intent.putExtra("SN", deviceSn);
-        startActivity(intent);
+            if(bread) {
+                StopRadar();
+                int sv = msg.arg2;
+                byte[] sn = (byte[]) msg.obj;
+                Intent intent = new Intent(MainActivity.this,
+                        InspectionActivity.class);
+                deviceSn = new String(sn);
+                intent.putExtra("SN", deviceSn);
+                startActivity(intent);
+            }
         }
     };
 

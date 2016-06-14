@@ -49,20 +49,21 @@ public class InspectionActivity extends Activity {
     private TextView activity_selectimg_sendBtn;
 
     private TextView snTextView;
+    String sn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         parentView = getLayoutInflater().inflate(R.layout.activity_selectimg, null);
-        ActivityList.getInstance().addActivity(this);
-
         setContentView(parentView);
+        ActivityList.getInstance().addActivity(this);
         Init();
     }
     public void Init() {
         snTextView = (TextView)findViewById(R.id.snT);
         Intent intent = getIntent();
-        String sn = intent.getStringExtra("SN");
+        String tempsn = intent.getStringExtra("SN");
+        sn = (tempsn != null) ? tempsn : sn;
         if(sn != null){
             EditText et = (EditText)findViewById(R.id.xunInfo);
             et.append(getString(R.string.deviceSn) + sn);
@@ -81,6 +82,8 @@ public class InspectionActivity extends Activity {
             @Override
             public void onClick(View v) {
                 //done send data to net or store to local.
+                finish();
+                ActivityList.getInstance().removeActivity(InspectionActivity.this);
             }
         });
         pop = new PopupWindow(InspectionActivity.this);
