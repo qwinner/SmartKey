@@ -16,6 +16,9 @@ import android.widget.Button;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android_serialport_api.RfidReader;
 import hyzk.smartkeydevice.R;
 import hyzk.smartkeydevice.adapter.MyGridAdapter;
@@ -39,6 +42,11 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
     private MyGridView gridview;
 
     private Button ExitBtn;
+    private String deviceSn = null;
+
+    private Timer startTimer=null;
+    private TimerTask startTask;
+    Handler startHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,8 +123,8 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
         radar.Show(true);
         txViewBtn.setText(this.getResources().getString(R.string.bt_stop_radar));
         radarVisible = true;
-
-        RfidReader.getInstance().SendCmd(0x03);
+        TimerStart();
+        //RfidReader.getInstance().SendCmd(0x02);
     }
 
     private void StopRadar(){
@@ -125,27 +133,54 @@ public class MainActivity extends Activity implements View.OnClickListener,Adapt
         radarVisible = false;
     }
 
+    public void TimerStart() {
+        if(startTimer!=null)
+            return;
+
+        startTimer = new Timer();
+        startHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+
+                if((deviceSn != null) && (deviceSn.length()>5)){
+                    TimerStop();
+                }else{
+                    RfidReader.getInstance().SendCmd(0x02);
+                }
+                super.handleMessage(msg);
+            }
+        };
+        startTask = new TimerTask() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                message.what = 1;
+                startHandler.sendMessage(message);
+            }
+        };
+        startTimer.schedule(startTask, 1000, 1000);
+    }
+
+    public void TimerStop() {
+        if (startTimer!=null) {
+            startTimer.cancel();
+            startTimer = null;
+            startTask.cancel();
+            startTask=null;
+        }
+    }
+
     private final Handler rfidHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-//            switch(msg.what){
-//                case RfidReader.STATE_ADDHIGH:
-//                {
-//                    byte[] sn=(byte[])msg.obj;
-//                }
-//                break;
-//                case RfidReader.STATE_ADDITEM:
-//                {
-                    StopRadar();
-                    int sv=msg.arg2;
-                    byte[] sn=(byte[])msg.obj;
-                    Intent intent = new Intent(MainActivity.this,
-                            InspectionActivity.class);
-                    intent.putExtra("SN", new String(sn));
-                    startActivity(intent);
-//                }
-//                break;
-//            }
+        StopRadar();
+        int sv=msg.arg2;
+        byte[] sn=(byte[])msg.obj;
+        Intent intent = new Intent(MainActivity.this,
+                InspectionActivity.class);
+        deviceSn = new String(sn);
+        intent.putExtra("SN", deviceSn);
+        startActivity(intent);
         }
     };
 

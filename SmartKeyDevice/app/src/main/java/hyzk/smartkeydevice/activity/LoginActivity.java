@@ -223,7 +223,7 @@ public class LoginActivity extends Activity implements OnItemClickListener {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                     ActivityList.getInstance().TestMode=true;
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.addCategory(Intent.CATEGORY_HOME);

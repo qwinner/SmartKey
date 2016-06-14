@@ -24,6 +24,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -63,7 +64,8 @@ public class InspectionActivity extends Activity {
         Intent intent = getIntent();
         String sn = intent.getStringExtra("SN");
         if(sn != null){
-            snTextView.append(getString(R.string.deviceSn) + sn);
+            EditText et = (EditText)findViewById(R.id.xunInfo);
+            et.append(getString(R.string.deviceSn) + sn);
         }
 
         rbackBtn = (Button)findViewById(R.id.rback);
@@ -71,6 +73,7 @@ public class InspectionActivity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
+                ActivityList.getInstance().removeActivity(InspectionActivity.this);
             }
         });
         activity_selectimg_sendBtn = (TextView)findViewById(R.id.activity_selectimg_send);
@@ -306,6 +309,8 @@ public class InspectionActivity extends Activity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            finish();
+            ActivityList.getInstance().removeActivity(InspectionActivity.this);
             return true;
         }else if(keyCode == KeyEvent.KEYCODE_HOME){
             return true;
